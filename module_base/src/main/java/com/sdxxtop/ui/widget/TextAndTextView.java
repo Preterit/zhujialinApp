@@ -8,9 +8,9 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
-
 import com.sdxxtop.base.R;
+
+import androidx.annotation.Nullable;
 
 
 /**
@@ -23,9 +23,11 @@ public class TextAndTextView extends LinearLayout {
     private TextView textNameText;
     private TextView textRightText;
     private TextView textRightImage;
+    private TextView tvStar;
     private View textLine;
     private boolean lineIsShow;
     private boolean imgIsShow;
+    private boolean isStarShow;
     private String textViewValue;
     private String textRightValue;
     private TextView textRightImage2;
@@ -47,6 +49,7 @@ public class TextAndTextView extends LinearLayout {
         textViewValue = a.getString(R.styleable.TextAndTextView_tatv_text_view);
         textRightValue = a.getString(R.styleable.TextAndTextView_tatv_text_right_value);
         textRightHintValue = a.getString(R.styleable.TextAndTextView_tatv_text_right_hint_value);
+        isStarShow = a.getBoolean(R.styleable.TextAndTextView_tatv_star_is_show,false);
         a.recycle();
         init();
     }
@@ -57,6 +60,7 @@ public class TextAndTextView extends LinearLayout {
         textRightText = (TextView) findViewById(R.id.text_and_text_right);
         textRightImage = (TextView) findViewById(R.id.text_and_text_right_image);
         textRightImage2 = (TextView) findViewById(R.id.text_and_text_right_image2);
+        tvStar = (TextView) findViewById(R.id.tv_star);
         textLine = findViewById(R.id.text_and_text_line);
 
         if (!lineIsShow) {
@@ -66,7 +70,7 @@ public class TextAndTextView extends LinearLayout {
         if (!imgIsShow) {
             textRightImage.setVisibility(GONE);
         }
-
+        tvStar.setVisibility(isStarShow?View.VISIBLE:View.GONE);
         textNameText.setText(textViewValue);
 
         textRightText.setTextColor(getResources().getColor(R.color.color_303030));
@@ -85,6 +89,9 @@ public class TextAndTextView extends LinearLayout {
 
     public void setShowLine(boolean isShow) {
         textLine.setVisibility(isShow ? VISIBLE : GONE);
+    }
+    public void setShowStar(boolean isShow) {
+        tvStar.setVisibility(isShow ? VISIBLE : GONE);
     }
 
     public void setTextRightImage2Show(boolean isShow) {

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.sdxxtop.zhujialinApp.ui.car_report.CarReportModel"/>
+
+        <variable
+            name="presenter"
+            type="com.sdxxtop.zhujialinApp.base.Presenter"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.sdxxtop.ui.widget.TitleView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:leftLayoutIsShow="true"
+            app:titleValue="车辆上报"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_dddddd"/>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <com.sdxxtop.zhujialinApp.widget.img_video_picker.CustomVideoImgSelectView
+                    android:id="@+id/cvisv_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"/>
+
+                <com.sdxxtop.zhujialinApp.widget.TextAndEditView
+                    android:id="@+id/taev_car_num"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:taev_edit_text_hint="请输入车牌号"
+                    app:taev_star_is_show="true"
+                    app:taev_text_view="车牌号"/>
+
+                <com.sdxxtop.zhujialinApp.widget.TextAndEditView
+                    android:id="@+id/tatv_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:taev_edit_text_hint="请输入姓名"
+                    app:taev_star_is_show="true"
+                    app:taev_text_view="司机姓名"/>
+
+                <com.sdxxtop.zhujialinApp.widget.TextAndEditView
+                    android:id="@+id/tatv_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:taev_edit_text_hint="请输入电话"
+                    app:taev_star_is_show="true"
+                    app:taev_text_view="司机电话"/>
+
+                <com.sdxxtop.ui.widget.TextAndTextView
+                    android:id="@+id/tatv_happen"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{(v) -> presenter.onClick(v)}"
+                    app:tatv_star_is_show="true"
+                    app:tatv_text_right_hint_value="请点击选择"
+                    app:tatv_text_view="车辆位置"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginRight="15dp"
+                        android:text="事情简要描述："
+                        android:textColor="@color/color_303030"
+                        android:textSize="17sp"/>
+
+                    <com.sdxxtop.zhujialinApp.widget.NumberEditTextView
+                        android:id="@+id/net_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginBottom="5dp"/>
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp"
+            android:paddingTop="15dp"
+            android:paddingRight="15dp"
+            android:paddingBottom="10dp">
+
+            <Button
+                android:id="@+id/btn_push"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_green_solid_bg"
+                android:onClick="@{(v)->presenter.onClick(v)}"
+                android:text="上报"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+    </LinearLayout>
+</layout>

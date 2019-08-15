@@ -8,8 +8,6 @@ import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.WindowManager;
 
-import androidx.annotation.Nullable;
-
 import com.sdxxtop.app.Constants;
 import com.sdxxtop.utils.SpUtil;
 import com.sdxxtop.zhujialinApp.BuildConfig;
@@ -17,10 +15,10 @@ import com.sdxxtop.zhujialinApp.R;
 import com.sdxxtop.zhujialinApp.base.GBaseMvpActivity;
 import com.sdxxtop.zhujialinApp.data.AutoLoginBean;
 import com.sdxxtop.zhujialinApp.ui.guardianapp.GuideActivity;
-import com.sdxxtop.zhujialinApp.ui.home.HomeActivity;
 import com.sdxxtop.zhujialinApp.ui.home.HomeTabActivity;
 import com.sdxxtop.zhujialinApp.ui.login.LoginActivity;
 
+import androidx.annotation.Nullable;
 import me.jessyan.autosize.internal.CancelAdapt;
 
 
@@ -131,7 +129,6 @@ public class SplashActivity extends GBaseMvpActivity<SplashPresenter> implements
         SpUtil.putInt(Constants.PART_ID, part_id);
         SpUtil.putString(Constants.AUTO_TOKEN, auto_token);
         SpUtil.putInt(Constants.TYPE, type);
-
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

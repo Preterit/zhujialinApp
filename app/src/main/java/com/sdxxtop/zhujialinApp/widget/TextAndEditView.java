@@ -10,9 +10,9 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
-
 import com.sdxxtop.zhujialinApp.R;
+
+import androidx.annotation.Nullable;
 
 /**
  * Created by Administrator on 2018/5/15.
@@ -22,11 +22,13 @@ public class TextAndEditView extends LinearLayout {
 
     private String endValue;
     private TextView editNameText;
+    private TextView tvStar;
     private EditText editText;
     private View editLine;
     private String textViewValue;
     private String editHintValue;
     private boolean isShow;
+    private boolean isStarShow;
     private TextView endText;
 
     public TextAndEditView(Context context) {
@@ -45,6 +47,8 @@ public class TextAndEditView extends LinearLayout {
         editHintValue = a.getString(R.styleable.TextAndEditView_taev_edit_text_hint);
         endValue = a.getString(R.styleable.TextAndEditView_taev_end_text_view);
         isShow = a.getBoolean(R.styleable.TextAndEditView_taev_line_is_show, true);
+        isStarShow = a.getBoolean(R.styleable.TextAndEditView_taev_star_is_show, false);
+
         a.recycle();
         init();
     }
@@ -55,10 +59,13 @@ public class TextAndEditView extends LinearLayout {
         editText = (EditText) findViewById(R.id.text_and_edit_edit);
         endText = (TextView) findViewById(R.id.text_and_edit_end_text);
         editLine = findViewById(R.id.text_and_edit_line);
+        tvStar = findViewById(R.id.tv_star);
 
         if (!isShow) {
             editLine.setVisibility(GONE);
         }
+
+        tvStar.setVisibility(isStarShow?View.VISIBLE:View.GONE);
 
         editNameText.setText(textViewValue);
         editText.setHintTextColor(getResources().getColor(R.color.color_999999));
@@ -75,6 +82,9 @@ public class TextAndEditView extends LinearLayout {
     }
 
     public void setShowLine(boolean isShow) {
+        editLine.setVisibility(isShow ? VISIBLE : GONE);
+    }
+    public void setShowStar(boolean isShow) {
         editLine.setVisibility(isShow ? VISIBLE : GONE);
     }
 }

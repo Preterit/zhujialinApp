@@ -11,7 +11,8 @@ public class MainIndexBean {
      * part_name : 岸堤镇
      * is_face : 2
      * pending_event : [{"title":"指派11","end_date":"2019-04-11","status":2}]
-     * add_event : [{"title":"指派22","end_date":"2019-04-11","status":5},{"title":"指派11","end_date":"2019-04-11","status":2},{"title":"test1","end_date":"","status":1},{"title":"test","end_date":"0000-00-00","status":1}]
+     * add_event : [{"title":"指派22","end_date":"2019-04-11","status":5},{"title":"指派11","end_date":"2019-04-11","status":2},{"title":"test1","end_date":"",
+     * "status":1},{"title":"test","end_date":"0000-00-00","status":1}]
      */
 
     private String name;
@@ -95,9 +96,13 @@ public class MainIndexBean {
     public static class EventBean {
         public static final int TYPE_PENDING = 10;
         public static final int TYPE_ADD = 11;
+        public static final int TYPE_CAR_REPORT = 12;
 
         public List<PendingEventBean> mPendingEventBean;
         public List<AddEventBean> mAddEventBean;
+
+        public List<AddEventBean> mCarEventBean;
+
         public int type;
     }
 

@@ -24,6 +24,7 @@
         <attr name="taev_edit_text_hint" format="string" />
         <attr name="taev_end_text_view" format="string" />
         <attr name="taev_line_is_show" format="boolean" />
+        <attr name="taev_star_is_show" format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="PieChartview">
@@ -36,6 +37,7 @@
         <attr name="tatv_text_right_hint_value" format="string" />
         <attr name="tatv_text_img_is_show" format="boolean" />
         <attr name="tatv_line_is_show" format="boolean" />
+        <attr name="tatv_star_is_show" format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="ColorTrackView">

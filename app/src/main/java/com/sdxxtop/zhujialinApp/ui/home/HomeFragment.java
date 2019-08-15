@@ -8,13 +8,9 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
 import com.orhanobut.logger.Logger;
 import com.sdxxtop.app.Constants;
-import com.sdxxtop.base.BaseMvpFragment;
 import com.sdxxtop.ui.dialog.IosAlertDialog;
 import com.sdxxtop.ui.widget.TitleView;
 import com.sdxxtop.utils.GpsUtils;
@@ -34,8 +30,12 @@ import com.sdxxtop.zhujialinApp.ui.guardianapp.PatrolRecordActivity;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import de.hdodenhof.circleimageview.CircleImageView;
+
+import static com.sdxxtop.zhujialinApp.presenter.bean.MainIndexBean.EventBean.TYPE_CAR_REPORT;
 
 /**
  * A simple {@link HomeFragment} subclass.
@@ -97,8 +97,11 @@ public class HomeFragment extends GBaseMvpFragment<HomeFragmentPresenter> implem
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 //        ArrayList<Integer> data = getRecyclerData(isAdmin);
-
-        mRecyclerAdapter = new HomeRecyclerAdapter(R.layout.item_home_recycler, new ArrayList<>());
+        ArrayList<MainIndexBean.EventBean> data = new ArrayList<>();
+        MainIndexBean.EventBean bean = new MainIndexBean.EventBean();
+        bean.type = TYPE_CAR_REPORT;
+        data.add(bean);
+        mRecyclerAdapter = new HomeRecyclerAdapter(R.layout.item_home_recycler, data);
         mRecyclerView.setAdapter(mRecyclerAdapter);
 
     }

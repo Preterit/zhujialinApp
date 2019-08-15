@@ -6,13 +6,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
-
-
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.sdxxtop.zhujialinApp.R;
 import com.sdxxtop.zhujialinApp.presenter.bean.MainIndexBean;
+import com.sdxxtop.zhujialinApp.ui.car_report.CarReportActivity;
 import com.sdxxtop.zhujialinApp.ui.guardianapp.EventReportActivity;
 import com.sdxxtop.zhujialinApp.ui.guardianapp.TaskAgentsActivity;
 
@@ -22,6 +20,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
+import androidx.annotation.Nullable;
 
 public class HomeRecyclerAdapter extends BaseQuickAdapter<MainIndexBean.EventBean, BaseViewHolder> {
 
@@ -77,6 +77,23 @@ public class HomeRecyclerAdapter extends BaseQuickAdapter<MainIndexBean.EventBea
                 itemImageView.setImageResource(R.drawable.icon_2_list);
                 view.setBackgroundColor(mContext.getResources().getColor(R.color.color_8C97CB));
                 break;
+            case MainIndexBean.EventBean.TYPE_CAR_REPORT:
+                tvTitle.setText("车辆上报");
+                if (item.mAddEventBean != null) {
+                    for (MainIndexBean.AddEventBean pendingEventBean : item.mAddEventBean) {
+                        EventData eventData = new EventData();
+                        eventData.end_date = pendingEventBean.getEnd_date();
+                        eventData.title = pendingEventBean.getTitle();
+                        eventData.status = pendingEventBean.getStatus();
+                        eventDataList.add(eventData);
+                    }
+                }
+                handleTaskStatus(MainIndexBean.EventBean.TYPE_ADD, tvTask1, tvTask2, tvScore1, tvScore2, eventDataList);
+
+
+                itemImageView.setImageResource(R.drawable.icon_2_list);
+                view.setBackgroundColor(mContext.getResources().getColor(R.color.color_8C97CB));
+                break;
         }
 
 
@@ -91,6 +108,9 @@ public class HomeRecyclerAdapter extends BaseQuickAdapter<MainIndexBean.EventBea
                         break;
                     case MainIndexBean.EventBean.TYPE_ADD:  //事件上报
                         intent = new Intent(mContext, EventReportActivity.class);
+                        break;
+                    case MainIndexBean.EventBean.TYPE_CAR_REPORT:  //车辆上报
+                        intent = new Intent(mContext, CarReportActivity.class);
                         break;
 //                    case R.drawable.list_3:  // 环保检测
 //                        intent = new Intent(mContext, EnvironmentalTestActivity.class);

@@ -44,4 +44,5 @@
 
 
     <string name="find_notice">查询公告</string>
+    <string name="text_digits">qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890</string>
 </resources>

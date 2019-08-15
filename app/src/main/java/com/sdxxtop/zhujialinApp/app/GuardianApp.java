@@ -48,7 +48,7 @@ public class GuardianApp extends App {
 
     @Override
     protected void initBaiduFace() {
-        FaceSDKManager.getInstance().initialize(this, "zjlguardian-face-android", "idl-license.face-android");
+        FaceSDKManager.getInstance().initialize(this, "shuzizhujialin-face-android", "idl-license.face-android");
 
     }
 }

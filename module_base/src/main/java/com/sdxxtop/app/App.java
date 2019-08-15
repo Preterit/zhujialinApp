@@ -3,11 +3,6 @@ package com.sdxxtop.app;
 
 import android.content.Context;
 
-import com.orhanobut.logger.AndroidLogAdapter;
-import com.orhanobut.logger.FormatStrategy;
-import com.orhanobut.logger.LogcatLogStrategy;
-import com.orhanobut.logger.Logger;
-import com.orhanobut.logger.PrettyFormatStrategy;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshFooterCreator;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshHeaderCreator;
@@ -39,6 +34,7 @@ public class App extends BaseApp {
     }
 
     protected void initBaiduFace() {
+
     }
 
     public static App getInstance() {

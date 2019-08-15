@@ -1,10 +1,8 @@
 package com.sdxxtop.zhujialinApp.base
 
-import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
