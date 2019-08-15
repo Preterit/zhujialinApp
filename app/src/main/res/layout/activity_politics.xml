@@ -7,11 +7,11 @@
 
         <variable
             name="vm"
-            type="com.sdxxtop.zjlguardian.ui.politics.PoliticsViewModel" />
+            type="com.sdxxtop.zhujialinApp.ui.politics.PoliticsViewModel" />
 
         <variable
             name="presenter"
-            type="com.sdxxtop.zjlguardian.base.Presenter" />
+            type="com.sdxxtop.zhujialinApp.base.Presenter" />
     </data>
 
     <LinearLayout
@@ -162,7 +162,7 @@
                                 android:textColor="#ff313131"
                                 android:textSize="15sp" />
 
-                            <com.sdxxtop.zjlguardian.widget.NumberEditTextView
+                            <com.sdxxtop.zhujialinApp.widget.NumberEditTextView
                                 android:id="@+id/netv_title"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -181,7 +181,7 @@
                                 android:textColor="#ff313131"
                                 android:textSize="15sp" />
 
-                            <com.sdxxtop.zjlguardian.widget.NumberEditTextView
+                            <com.sdxxtop.zhujialinApp.widget.NumberEditTextView
                                 android:id="@+id/netv_content"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -211,7 +211,7 @@
                                     android:hint="(仅限上传10张)" />
                             </LinearLayout>
 
-                            <com.sdxxtop.zjlguardian.widget.PhotoHorSelectedView
+                            <com.sdxxtop.zhujialinApp.widget.PhotoHorSelectedView
                                 android:id="@+id/phsv_view"
                                 android:layout_width="match_parent"
                                 android:layout_height="135dp" />

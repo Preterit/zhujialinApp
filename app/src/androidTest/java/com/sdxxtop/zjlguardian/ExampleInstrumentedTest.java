@@ -1,4 +1,4 @@
-package com.sdxxtop.zjlguardian;
+package com.sdxxtop.zhujialinApp;
 
 import android.content.Context;
 
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.sdxxtop.zjlguardian", appContext.getPackageName());
+        assertEquals("com.sdxxtop.zhujialinApp", appContext.getPackageName());
     }
 }

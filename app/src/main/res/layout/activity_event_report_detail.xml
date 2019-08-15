@@ -34,7 +34,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="90dp">
 
-                <com.sdxxtop.zjlguardian.widget.CustomProgressBar
+                <com.sdxxtop.zhujialinApp.widget.CustomProgressBar
                     android:id="@+id/cpb_progress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />

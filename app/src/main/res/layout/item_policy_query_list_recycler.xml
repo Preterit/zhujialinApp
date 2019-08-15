@@ -6,7 +6,7 @@
 
         <variable
             name="policy"
-            type="com.sdxxtop.zjlguardian.ui.policy.data.Policy" />
+            type="com.sdxxtop.zhujialinApp.ui.policy.data.Policy" />
     </data>
 
     <LinearLayout

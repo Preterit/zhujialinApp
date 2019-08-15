@@ -71,7 +71,7 @@
             android:paddingBottom="10dp"
             android:text="备注" />
 
-        <com.sdxxtop.zjlguardian.widget.NumberEditTextView
+        <com.sdxxtop.zhujialinApp.widget.NumberEditTextView
             android:id="@+id/et_num_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -84,7 +84,7 @@
             android:text="已解决现场拍照" />
 
 
-        <com.sdxxtop.zjlguardian.widget.SelectHoriPhotoView
+        <com.sdxxtop.zhujialinApp.widget.SelectHoriPhotoView
             android:id="@+id/shpv_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

@@ -45,7 +45,7 @@ import com.baidu.idl.face.platform.utils.APIUtils;
 import com.baidu.idl.face.platform.utils.Base64Utils;
 import com.baidu.idl.face.platform.utils.CameraPreviewUtils;
 import com.sdxxtop.utils.AMapFindLocation;
-import com.sdxxtop.zjlguardian.R;
+import com.sdxxtop.zhujialinApp.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -5,7 +5,7 @@ package com.baidu.idl.face.platform.ui;
 
 import com.baidu.idl.face.platform.FaceEnvironment;
 import com.baidu.idl.face.platform.FaceStatusEnum;
-import com.sdxxtop.zjlguardian.R;
+import com.sdxxtop.zhujialinApp.R;
 
 /**
  * sdk使用Res资源设置功能

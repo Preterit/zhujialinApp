@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.sdxxtop.zjlguardian">
+    package="com.sdxxtop.zhujialinApp">
 
     <application
         android:name=".app.GuardianApp"
@@ -44,7 +44,7 @@
             android:value="724" />
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="21614bbf5c1136840409666a3d3de41c" />
+            android:value="c2edeaba918ff01a44f1ff71c712d9db" />
 
         <service android:name="com.amap.api.location.APSService" />
         <service android:name=".service.PatrolRecordService" />

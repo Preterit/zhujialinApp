@@ -7,7 +7,7 @@
 
         <variable
             name="presenter"
-            type="com.sdxxtop.zjlguardian.base.Presenter" />
+            type="com.sdxxtop.zhujialinApp.base.Presenter" />
     </data>
 
     <androidx.core.widget.NestedScrollView

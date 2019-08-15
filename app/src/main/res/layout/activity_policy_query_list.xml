@@ -7,11 +7,11 @@
 
         <variable
             name="vm"
-            type="com.sdxxtop.zjlguardian.ui.policy.PolicyQueryListViewModel" />
+            type="com.sdxxtop.zhujialinApp.ui.policy.PolicyQueryListViewModel" />
 
         <variable
             name="presenter"
-            type="com.sdxxtop.zjlguardian.base.Presenter" />
+            type="com.sdxxtop.zhujialinApp.base.Presenter" />
     </data>
 
     <LinearLayout

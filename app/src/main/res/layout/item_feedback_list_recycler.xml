@@ -5,7 +5,7 @@
     <data>
         <variable
             name="proposal"
-            type="com.sdxxtop.zjlguardian.ui.feedback.data.Proposal" />
+            type="com.sdxxtop.zhujialinApp.ui.feedback.data.Proposal" />
     </data>
 
     <androidx.cardview.widget.CardView
