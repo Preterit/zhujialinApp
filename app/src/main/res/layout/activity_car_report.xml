@@ -24,6 +24,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:leftLayoutIsShow="true"
+            app:rightTextColor="@color/black"
+            app:rightTextValue="我的车辆上报"
             app:titleValue="车辆上报"/>
 
         <View
@@ -83,6 +85,14 @@
                     app:tatv_text_right_hint_value="请点击选择"
                     app:tatv_text_view="车辆位置"/>
 
+                <com.sdxxtop.ui.widget.TextAndTextView
+                    android:id="@+id/tatv_report_part"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{(v)->presenter.onClick(v)}"
+                    app:tatv_text_right_hint_value="请点击选择"
+                    app:tatv_text_view="上报部门"/>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -96,7 +106,7 @@
                         android:layout_marginRight="15dp"
                         android:text="事情简要描述："
                         android:textColor="@color/color_303030"
-                        android:textSize="17sp"/>
+                        android:textSize="14sp"/>
 
                     <com.sdxxtop.zhujialinApp.widget.NumberEditTextView
                         android:id="@+id/net_content"

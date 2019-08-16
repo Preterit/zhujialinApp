@@ -8,6 +8,7 @@ import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
 import com.bigkoo.pickerview.listener.OnOptionsSelectChangeListener;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
+import com.sdxxtop.utils.UIUtils;
 
 import java.util.List;
 
@@ -24,15 +25,28 @@ public class SingleStyleView {
         initOptionPicker();
     }
 
+    public SingleStyleView(Activity activity) {
+        this(activity, null);
+    }
+
     public void show() {
+        if (mList == null || mList.size() == 0) {
+            UIUtils.showToast("暂无部门");
+            return;
+        }
         if (pvOptions != null) {
+            pvOptions.show();
+        } else {
+            initOptionPicker();
             pvOptions.show();
         }
     }
 
     public void replaceData(List<String> queryData) {
         this.mList = queryData;
-        pvOptions.setPicker(queryData);
+        if (pvOptions != null) {
+            pvOptions.setPicker(queryData);
+        }
     }
 
     public interface OnItemSelectLintener {
@@ -48,7 +62,9 @@ public class SingleStyleView {
         /**
          * 注意 ：如果是三级联动的数据(省市区等)，请参照 JsonDataActivity 类里面的写法。
          */
-
+        if (mList == null || mList.size() == 0) {
+            return;
+        }
         pvOptions = new OptionsPickerBuilder(mActivity, new OnOptionsSelectListener() {
             @Override
             public void onOptionsSelect(int options1, int options2, int options3, View v) {

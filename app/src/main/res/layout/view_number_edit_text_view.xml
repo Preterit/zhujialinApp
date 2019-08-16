@@ -10,7 +10,7 @@
     <EditText
         android:id="@+id/et_content"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="80dp"
         android:background="@null"
         android:gravity="left|top"
         android:hint="必填"

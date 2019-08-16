@@ -12,8 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.notice.NoticeActivity"></activity>
-        <activity android:name=".ui.car_report.CarReportActivity"></activity>
+        <activity android:name=".ui.notice.NoticeActivity"/>
+        <activity android:name=".ui.car_report.CarReportActivity"/>
+        <activity android:name=".ui.car_report.MyCarReportActivity"/>
+        <activity android:name=".ui.car_report.CarReportDetailActivity"/>
         <activity
             android:name=".ui.feedback.FeedbackActivity"
             android:windowSoftInputMode="adjustPan" />

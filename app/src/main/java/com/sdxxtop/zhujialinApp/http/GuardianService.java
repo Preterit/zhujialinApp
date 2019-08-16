@@ -2,7 +2,6 @@ package com.sdxxtop.zhujialinApp.http;
 
 import com.sdxxtop.model.bean.InitBean;
 import com.sdxxtop.model.bean.RequestBean;
-import com.sdxxtop.zhujialinApp.BuildConfig;
 import com.sdxxtop.zhujialinApp.data.AutoLoginBean;
 import com.sdxxtop.zhujialinApp.data.ContactIndexBean;
 import com.sdxxtop.zhujialinApp.data.EventSearchTitleBean;
@@ -15,7 +14,6 @@ import com.sdxxtop.zhujialinApp.data.PoliticsListBean;
 import com.sdxxtop.zhujialinApp.data.PushDataBean;
 import com.sdxxtop.zhujialinApp.data.RegisterBean;
 import com.sdxxtop.zhujialinApp.data.ServerPeopleBean;
-import com.sdxxtop.zhujialinApp.data.ShowPartBean;
 import com.sdxxtop.zhujialinApp.data.SignLogBean;
 import com.sdxxtop.zhujialinApp.data.StudyCourseBean;
 import com.sdxxtop.zhujialinApp.data.StudyQuestionBean;
@@ -23,6 +21,8 @@ import com.sdxxtop.zhujialinApp.data.UcenterIndexBean;
 import com.sdxxtop.zhujialinApp.presenter.bean.EventIndexBean;
 import com.sdxxtop.zhujialinApp.presenter.bean.EventReadBean;
 import com.sdxxtop.zhujialinApp.presenter.bean.MainIndexBean;
+import com.sdxxtop.zhujialinApp.ui.car_report.data.CarIndexBean;
+import com.sdxxtop.zhujialinApp.ui.car_report.data.CarReportDetailBean;
 import com.sdxxtop.zhujialinApp.ui.feedback.data.FeedbackData;
 import com.sdxxtop.zhujialinApp.ui.feedback.data.ProposalBean;
 import com.sdxxtop.zhujialinApp.ui.notice.data.NoticeData;
@@ -125,6 +125,16 @@ public interface GuardianService {
     @POST("event/showPart")
     Observable<RequestBean<ArrayList<PartBean>>> postEventShowPart2(@Field("data") String data);
 
+    //
+    @FormUrlEncoded
+    @POST("car_event/index")
+    Observable<RequestBean<CarIndexBean>> postCarReportData(@Field("data") String data);
+
+    //
+    @FormUrlEncoded
+    @POST("car_event/read")
+    Observable<RequestBean<CarReportDetailBean>> postCarReportDetail(@Field("data") String data);
+
     @FormUrlEncoded
     @POST("event/search")
     Observable<RequestBean<EventSearchTitleBean>> postEventSearch(@Field("data") String data);
@@ -208,6 +218,10 @@ public interface GuardianService {
     @POST("my_politics/politicsConfirm")
     Observable<RequestBean<PushDataBean>> postPoliticsConfirm(@PartMap Map<String, RequestBody> data);
 
+    @Multipart
+    @POST("car_event/add")
+    Observable<RequestBean> postCarReport(@PartMap Map<String, RequestBody> data);
+
     @FormUrlEncoded
     @POST("my_politics/search")
     Observable<RequestBean<PoliticsListBean>> postPoliticsSearch(@Field("data") String data);
@@ -227,7 +241,6 @@ public interface GuardianService {
     @FormUrlEncoded
     @POST("my_proposal/search")
     Observable<RequestBean<FeedbackData>> postProposalSearch(@Field("data") String data);
-
 
     @FormUrlEncoded
     @POST("notice/index")

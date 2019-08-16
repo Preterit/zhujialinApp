@@ -35,8 +35,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-import static com.sdxxtop.zhujialinApp.presenter.bean.MainIndexBean.EventBean.TYPE_CAR_REPORT;
-
 /**
  * A simple {@link HomeFragment} subclass.
  */
@@ -97,11 +95,8 @@ public class HomeFragment extends GBaseMvpFragment<HomeFragmentPresenter> implem
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 //        ArrayList<Integer> data = getRecyclerData(isAdmin);
-        ArrayList<MainIndexBean.EventBean> data = new ArrayList<>();
-        MainIndexBean.EventBean bean = new MainIndexBean.EventBean();
-        bean.type = TYPE_CAR_REPORT;
-        data.add(bean);
-        mRecyclerAdapter = new HomeRecyclerAdapter(R.layout.item_home_recycler, data);
+
+        mRecyclerAdapter = new HomeRecyclerAdapter(R.layout.item_home_recycler, new ArrayList<>());
         mRecyclerView.setAdapter(mRecyclerAdapter);
 
     }

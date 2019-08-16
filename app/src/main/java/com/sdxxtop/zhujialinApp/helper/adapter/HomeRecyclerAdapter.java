@@ -79,20 +79,20 @@ public class HomeRecyclerAdapter extends BaseQuickAdapter<MainIndexBean.EventBea
                 break;
             case MainIndexBean.EventBean.TYPE_CAR_REPORT:
                 tvTitle.setText("车辆上报");
-                if (item.mAddEventBean != null) {
-                    for (MainIndexBean.AddEventBean pendingEventBean : item.mAddEventBean) {
+                if (item.mAddCarEvent != null) {
+                    for (MainIndexBean.AddCarEvent carEvent : item.mAddCarEvent) {
                         EventData eventData = new EventData();
-                        eventData.end_date = pendingEventBean.getEnd_date();
-                        eventData.title = pendingEventBean.getTitle();
-                        eventData.status = pendingEventBean.getStatus();
+                        eventData.end_date = carEvent.getEnd_time();
+                        eventData.title = carEvent.getCar_name();
+                        eventData.status = carEvent.getStatus();
                         eventDataList.add(eventData);
                     }
                 }
-                handleTaskStatus(MainIndexBean.EventBean.TYPE_ADD, tvTask1, tvTask2, tvScore1, tvScore2, eventDataList);
+                handleTaskStatus(MainIndexBean.EventBean.TYPE_CAR_REPORT, tvTask1, tvTask2, tvScore1, tvScore2, eventDataList);
 
 
-                itemImageView.setImageResource(R.drawable.icon_2_list);
-                view.setBackgroundColor(mContext.getResources().getColor(R.color.color_8C97CB));
+                itemImageView.setImageResource(R.drawable.icon_3_list);
+                view.setBackgroundColor(mContext.getResources().getColor(R.color.color_89C997));
                 break;
         }
 
@@ -158,10 +158,13 @@ public class HomeRecyclerAdapter extends BaseQuickAdapter<MainIndexBean.EventBea
 
         if (eventDataList.size() == 1) {
             String appendValue = "新任务：";
-            if (type == MainIndexBean.EventBean.TYPE_ADD) {
+
+            if (type == MainIndexBean.EventBean.TYPE_ADD) {// 事件上报
                 appendValue = getAddValue(eventDataList.get(0).status);
-            } else {
+            } else if (type == MainIndexBean.EventBean.TYPE_PENDING){ // 代办
                 appendValue = getAppendValue(eventDataList.get(0).status);
+            }else if (type == MainIndexBean.EventBean.TYPE_CAR_REPORT){// 车辆上报
+                appendValue = getAddCarValue(eventDataList.get(0).status);
             }
 
             if (!TextUtils.isEmpty(appendValue)) {
@@ -180,9 +183,12 @@ public class HomeRecyclerAdapter extends BaseQuickAdapter<MainIndexBean.EventBea
             if (type == MainIndexBean.EventBean.TYPE_ADD) {
                 appendValue = getAddValue(eventDataList.get(0).status);
                 appendValue2 = getAddValue(eventDataList.get(1).status);
-            } else {
+            } else if (type == MainIndexBean.EventBean.TYPE_PENDING){
                 appendValue = getAppendValue(eventDataList.get(0).status);
                 appendValue2 = getAppendValue(eventDataList.get(1).status);
+            }else if (type == MainIndexBean.EventBean.TYPE_CAR_REPORT){// 车辆上报
+                appendValue = getAddCarValue(eventDataList.get(0).status);
+                appendValue2 = getAddCarValue(eventDataList.get(1).status);
             }
 
             if (!TextUtils.isEmpty(appendValue)) {
@@ -241,6 +247,27 @@ public class HomeRecyclerAdapter extends BaseQuickAdapter<MainIndexBean.EventBea
             //受理事变
             default:
                 value = "新完成：";
+                break;
+        }
+        return value;
+    }
+
+    //事件状态:1=已提交,2=待派发,3=已派发,4=已完成
+    private String getAddCarValue(int status) {
+        String value = "";
+        switch (status) {
+            case 1:
+                value = "已提交：";
+                break;
+            case 2:
+                value = "待派发：";
+                break;
+            case 3:
+                value = "已派发：";
+                break;
+            //受理事变
+            default:
+                value = "已完成：";
                 break;
         }
         return value;

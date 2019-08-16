@@ -3,13 +3,14 @@ package com.sdxxtop.zhujialinApp.base
 import android.content.Context
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.databinding.library.baseAdapters.BR
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProviders
 import com.noober.background.BackgroundLibrary
 import com.sdxxtop.utils.DialogUtil
-import com.sdxxtop.zhujialinApp.BR
 import com.sdxxtop.zhujialinApp.extens.statusBar
 import me.yokeyword.fragmentation.SupportActivity
 
@@ -65,6 +66,12 @@ abstract class KBaseActivity<VB : ViewDataBinding> : SupportActivity(), Presente
 
     fun <T : ViewModel> bindViewModel(clazz: Class<T>): T {
         return ViewModelProviders.of(this)[clazz]
+    }
+
+    fun hideKeyboard(view: View) {
+        val imm = view.context
+                .getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm?.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
 }

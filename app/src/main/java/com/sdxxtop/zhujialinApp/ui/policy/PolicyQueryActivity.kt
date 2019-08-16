@@ -12,14 +12,13 @@ import com.sdxxtop.zhujialinApp.databinding.ActivityPolicyQueryBinding
 import com.sdxxtop.zhujialinApp.extens.toast
 import com.sdxxtop.zhujialinApp.helper.adapter.HomePagerAdapter
 import com.sdxxtop.zhujialinApp.ui.policy.data.PolicyQueryBean
-import com.sdxxtop.zhujialinApp.ui.politics.PoliticsSearchActivity
 import kotlinx.android.synthetic.main.fragment_policy_query_tab.*
 import org.jetbrains.anko.startActivity
 
 class PolicyQueryActivity : KBaseActivity<ActivityPolicyQueryBinding>() {
 
     val arrayList = listOf("企业政策", "个人政策")
-    var fragmentList: List<PolicyQueryTabFragment>? = null;
+    var fragmentList: List<PolicyQueryTabFragment>? = null
 
     override fun initView() {
         mBinding.vm = bindViewModel(PolicyQueryViewModel::class.java)

@@ -66,8 +66,6 @@ public class HomeTabActivity extends GBaseMvpActivity<HomePresenter> implements 
         super.initVariables();
         if (getIntent() != null) {
             isAdmin = getIntent().getBooleanExtra("isAdmin", false);
-            //TODO  暂时开启权限
-            isAdmin = true;
         }
     }
 
@@ -150,7 +148,6 @@ public class HomeTabActivity extends GBaseMvpActivity<HomePresenter> implements 
                         mFragments[1],
                         mFragments[2], mFragments[3]);
             } else { //无权限的，不显示网格员
-
                 if (mFragments == null) {
                     mFragments = new SupportFragment[3];
                 }

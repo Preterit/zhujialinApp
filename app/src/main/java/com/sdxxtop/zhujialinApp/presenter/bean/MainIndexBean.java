@@ -22,6 +22,15 @@ public class MainIndexBean {
     private int is_face;
     private List<PendingEventBean> pending_event;
     private List<AddEventBean> add_event;
+    private List<AddCarEvent> add_car_event;
+
+    public List<AddCarEvent> getAdd_car_event() {
+        return add_car_event;
+    }
+
+    public void setAdd_car_event(List<AddCarEvent> add_car_event) {
+        this.add_car_event = add_car_event;
+    }
 
     public String getName() {
         return name;
@@ -89,6 +98,11 @@ public class MainIndexBean {
         eventBean.type = EventBean.TYPE_ADD;
         eventBean.mAddEventBean = add_event;
         eventBeans.add(eventBean);
+        eventBean = new EventBean();
+        eventBean.type = EventBean.TYPE_CAR_REPORT;
+        eventBean.mAddCarEvent = add_car_event;
+        eventBeans.add(eventBean);
+
         return eventBeans;
     }
 
@@ -100,8 +114,7 @@ public class MainIndexBean {
 
         public List<PendingEventBean> mPendingEventBean;
         public List<AddEventBean> mAddEventBean;
-
-        public List<AddEventBean> mCarEventBean;
+        public List<AddCarEvent> mAddCarEvent;
 
         public int type;
     }
@@ -167,6 +180,36 @@ public class MainIndexBean {
 
         public void setEnd_date(String end_date) {
             this.end_date = end_date;
+        }
+
+        public int getStatus() {
+            return status;
+        }
+
+        public void setStatus(int status) {
+            this.status = status;
+        }
+    }
+
+    public static class AddCarEvent{
+        private String car_name;
+        private String end_time;
+        private int status;
+
+        public String getCar_name() {
+            return car_name;
+        }
+
+        public void setCar_name(String car_name) {
+            this.car_name = car_name;
+        }
+
+        public String getEnd_time() {
+            return end_time;
+        }
+
+        public void setEnd_time(String end_time) {
+            this.end_time = end_time;
         }
 
         public int getStatus() {
