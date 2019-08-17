@@ -8,7 +8,6 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
 import com.sdxxtop.ui.widget.TitleView;
-import com.sdxxtop.utils.UIUtils;
 import com.sdxxtop.zhujialinApp.R;
 import com.sdxxtop.zhujialinApp.base.GBaseMvpActivity;
 import com.sdxxtop.zhujialinApp.wxapi.WxShareHelper;
@@ -67,7 +66,8 @@ public class NewsDetailsActivity extends GBaseMvpActivity<NewsDetailPresenter> i
 
         article_path = getIntent().getStringExtra("article_path");
         isHasShare = getIntent().getBooleanExtra("isHasShare", false);
-
+        //TODO  分享取消
+        isHasShare = false;
         webView.setHorizontalScrollBarEnabled(false);//水平不显示
         webView.setVerticalScrollBarEnabled(false); //垂直不显示
 

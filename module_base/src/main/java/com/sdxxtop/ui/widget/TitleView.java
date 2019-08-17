@@ -11,10 +11,9 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
-
 import com.sdxxtop.base.R;
-import com.sdxxtop.utils.UIUtils;
+
+import androidx.annotation.Nullable;
 
 public class TitleView extends RelativeLayout {
 
@@ -28,6 +27,8 @@ public class TitleView extends RelativeLayout {
     private TextView tvRight;
     private LinearLayout linearBack;
     private boolean layoutIsShow;
+    private boolean fitsSystemWindows;
+    private boolean clipToPadding;
 
     public TitleView(Context context) {
         this(context, null);
@@ -48,13 +49,17 @@ public class TitleView extends RelativeLayout {
         rightTextColor = a.getColor(R.styleable.TitleView_rightTextColor, getResources().getColor(R.color.white));
         layoutIsShow = a.getBoolean(R.styleable.TitleView_leftLayoutIsShow, false);
         layoutIconIsGray = a.getBoolean(R.styleable.TitleView_leftLayoutIconIsGray, false);
+        fitsSystemWindows = a.getBoolean(R.styleable.TitleView_fits_system_windows, true);
+        clipToPadding = a.getBoolean(R.styleable.TitleView_clip_to_padding, true);
         a.recycle();
         init();
     }
 
     private void init() {
-        setClipToPadding(true);
-        setFitsSystemWindows(true);
+        if (clipToPadding){
+            setClipToPadding(clipToPadding);
+            setFitsSystemWindows(fitsSystemWindows);
+        }
         setBackgroundColor(bgColor);
 
         LayoutInflater.from(getContext()).inflate(R.layout.view_title, this, true);

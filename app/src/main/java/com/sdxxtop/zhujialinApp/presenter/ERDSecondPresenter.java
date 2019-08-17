@@ -1,6 +1,5 @@
 package com.sdxxtop.zhujialinApp.presenter;
 
-import com.sdxxtop.base.RxPresenter;
 import com.sdxxtop.model.bean.RequestBean;
 import com.sdxxtop.model.http.callback.IRequestCallback;
 import com.sdxxtop.model.http.net.ImageParams;
@@ -22,14 +21,20 @@ public class ERDSecondPresenter extends GRxPresenter<ERDSecondContract.IView> im
     public ERDSecondPresenter() {
     }
 
-    public void modify(String eventId, int status, String extra, List<File> imagePushPath) {
+    public void modify(String eventId, int status, String extra, List<File> imagePushPath, int eventType) {
         ImageParams params = new ImageParams();
         params.put("ei", eventId);
         params.put("st", status);
         params.put("et", extra);
 
         params.addImagePathList("img[]", imagePushPath);
-        Observable<RequestBean> observable = getService().postEventModify(params.getImgData());
+        Observable<RequestBean> observable = null;
+        if (eventType == 3) {
+            observable = getService().postCarModify(params.getImgData());
+        } else {
+            observable = getService().postEventModify(params.getImgData());
+        }
+
         Disposable disposable = RxUtils.handleHttp(observable, new IRequestCallback<RequestBean>() {
             @Override
             public void onSuccess(RequestBean requestBean) {

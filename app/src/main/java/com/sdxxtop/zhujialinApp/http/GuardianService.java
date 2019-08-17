@@ -120,6 +120,10 @@ public interface GuardianService {
     @POST("event/modify")
     Observable<RequestBean> postEventModify(@PartMap HashMap<String, RequestBody> data);
 
+    @Multipart
+    @POST("car_event/modify")
+    Observable<RequestBean> postCarModify(@PartMap HashMap<String, RequestBody> data);
+
     //
     @FormUrlEncoded
     @POST("event/showPart")

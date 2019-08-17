@@ -13,9 +13,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:bgColor="@color/green"
+        app:leftLayoutIconIsGray="true"
         app:leftLayoutIsShow="true"
         app:rightTextValue="我的上报"
-        app:leftLayoutIconIsGray="true"
         app:titleColor="@color/white"
         app:titleValue="事件上报"/>
 

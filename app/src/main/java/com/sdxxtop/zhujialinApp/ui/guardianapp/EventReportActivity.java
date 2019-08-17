@@ -1,7 +1,6 @@
 package com.sdxxtop.zhujialinApp.ui.guardianapp;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextUtils;
@@ -11,16 +10,10 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
-import com.sdxxtop.base.BaseMvpActivity;
 import com.sdxxtop.ui.dialog.IosAlertDialog;
 import com.sdxxtop.ui.widget.TextAndTextView;
 import com.sdxxtop.ui.widget.TitleView;
@@ -40,6 +33,9 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -408,6 +404,7 @@ public class EventReportActivity extends GBaseMvpActivity<EventReportPresenter> 
 
     @OnClick({R.id.tatv_query, R.id.tatv_happen, R.id.tatv_report_path})
     public void onViewClicked(View view) {
+        hideKeyboard(view);
         switch (view.getId()) {
             case R.id.tatv_query:
                 selectQuery();

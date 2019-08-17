@@ -22,12 +22,11 @@ public class LLLLL extends BaseQuickAdapter<String, BaseViewHolder> {
     protected void convert(BaseViewHolder helper, String item) {
         List<String> list = new ArrayList<>();
         for (String s : list) {
-            
-        }
-                
 
-        
+        }
+
 
     }
+
 
 }

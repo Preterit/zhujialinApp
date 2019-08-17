@@ -8,9 +8,6 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
-
-import com.sdxxtop.base.BaseMvpActivity;
 import com.sdxxtop.ui.widget.TitleView;
 import com.sdxxtop.zhujialinApp.R;
 import com.sdxxtop.zhujialinApp.base.GBaseMvpActivity;
@@ -24,6 +21,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.Nullable;
 import butterknife.BindView;
 import butterknife.OnClick;
 import cn.qqtheme.framework.picker.OptionPicker;
@@ -34,6 +32,8 @@ public class EventReportDetailSecondActivity extends GBaseMvpActivity<ERDSecondP
     public static final int TYPE_REPORT = 1;
     //反馈完成
     public static final int TYPE_FINISH = 2;
+    //车辆上报完成
+    public static final int TYPE_CAR_FINISH = 3;
 
     @BindView(R.id.tv_title)
     TitleView tvTitle;
@@ -86,7 +86,8 @@ public class EventReportDetailSecondActivity extends GBaseMvpActivity<ERDSecondP
             mEventType = intent.getIntExtra("eventType", TYPE_REPORT);
         }
 
-        if (mEventType == TYPE_FINISH) {
+        setTopViewPadding(tvTitle);
+        if (mEventType == TYPE_FINISH || mEventType == TYPE_CAR_FINISH) {
             tvRemark.setText("解决问题的简要描述");
             rlLayout.setVisibility(View.GONE);
             tvTitle.setTitleValue("解决反馈");
@@ -94,6 +95,8 @@ public class EventReportDetailSecondActivity extends GBaseMvpActivity<ERDSecondP
         } else {
             tvPhotoTitle.setVisibility(View.GONE);
         }
+
+
     }
 
     @OnClick({R.id.iv_time_more, R.id.tv_select, R.id.btn_push})
@@ -110,7 +113,7 @@ public class EventReportDetailSecondActivity extends GBaseMvpActivity<ERDSecondP
     }
 
     private void push() {
-        boolean isFinish = mEventType == TYPE_FINISH;
+        boolean isFinish = (mEventType == TYPE_FINISH || mEventType == TYPE_CAR_FINISH);
         if (mList == null && !isFinish) { //是完成的状态的情况不进入这个选择
             showToast("请选择验收结果");
             return;
@@ -127,13 +130,13 @@ public class EventReportDetailSecondActivity extends GBaseMvpActivity<ERDSecondP
 
         showLoadingDialog();
         if (isFinish) {
-            mPresenter.modify(mEventId, 3, editValue, imagePushPath);
+            mPresenter.modify(mEventId, 3, editValue, imagePushPath, mEventType);
         } else {  //走彻底完成的逻辑
 
             String selectType = tvSelect.getText().toString().trim();
             int i = mList.indexOf(selectType) + 4;
 
-            mPresenter.modify(mEventId, i, editValue, imagePushPath);
+            mPresenter.modify(mEventId, i, editValue, imagePushPath, mEventType);
         }
     }
 

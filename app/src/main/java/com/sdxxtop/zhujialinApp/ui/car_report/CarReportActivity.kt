@@ -22,6 +22,7 @@ import com.sdxxtop.zhujialinApp.widget.SingleStyleView
 import io.reactivex.functions.Consumer
 import kotlinx.android.synthetic.main.activity_car_report.*
 import org.jetbrains.anko.sdk27.coroutines.onClick
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.textColor
 
 /**
@@ -86,6 +87,12 @@ class CarReportActivity : KBaseActivity<ActivityCarReportBinding>() {
         mBinding.vm?.mPartList?.observe(this, Observer {
             setPickerData(it)
         })
+        mBinding.vm?.addReprtSuccess?.observe(this, Observer {
+            hideLoadingDialog()
+            toast("上报成功")
+            finish()
+            startActivity<MyCarReportActivity>()
+        })
     }
 
     private fun setPickerData(it: ArrayList<PartBean>) {
@@ -142,6 +149,7 @@ class CarReportActivity : KBaseActivity<ActivityCarReportBinding>() {
         val content = mBinding.netContent.editValue
         content.ifEmpty { toast("填写描述"); return }
 
+        showLoadingDialog()
         mBinding.vm?.addReport(carNum, name, phone, address, lonLng!!, content, mSelectPartId, imgList)
     }
 

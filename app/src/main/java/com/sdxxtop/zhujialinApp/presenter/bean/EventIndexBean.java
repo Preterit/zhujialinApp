@@ -46,7 +46,25 @@ public class EventIndexBean {
         private int status;
         private String place;
         private String add_time;
-        private int important_type;
+        private String important_type;
+        private String address;
+        private int is_car;
+
+        public String getAddress() {
+            return address;
+        }
+
+        public void setAddress(String address) {
+            this.address = address;
+        }
+
+        public int getIs_car() {
+            return is_car;
+        }
+
+        public void setIs_car(int is_car) {
+            this.is_car = is_car;
+        }
 
         public int getId() {
             return id;
@@ -104,11 +122,11 @@ public class EventIndexBean {
             this.add_time = add_time;
         }
 
-        public int getImportant_type() {
+        public String getImportant_type() {
             return important_type;
         }
 
-        public void setImportant_type(int important_type) {
+        public void setImportant_type(String important_type) {
             this.important_type = important_type;
         }
     }

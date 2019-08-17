@@ -22,6 +22,7 @@ import java.util.*
 class CarReportModel : BaseViewModel() {
 
     val mPartList = MutableLiveData<ArrayList<PartBean>>()
+    val addReprtSuccess = MutableLiveData<Boolean>()
 
     fun loadArea() {
         val params = Params()
@@ -52,7 +53,7 @@ class CarReportModel : BaseViewModel() {
         val observable = RetrofitHelper.getGuardianService().postCarReport(imageParams.imgData)
         val disposable = RxUtils.handleHttp(observable, object : IRequestCallback<RequestBean<*>> {
             override fun onSuccess(requestBean: RequestBean<*>) {
-                UIUtils.showToast("success")
+                addReprtSuccess.set(true)
             }
 
             override fun onFailure(code: Int, error: String) {

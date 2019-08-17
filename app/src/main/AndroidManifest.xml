@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.sdxxtop.zhujialinApp">
+          xmlns:tools="http://schemas.android.com/tools"
+          package="com.sdxxtop.zhujialinApp">
 
     <application
         android:name=".app.GuardianApp"
@@ -18,73 +18,74 @@
         <activity android:name=".ui.car_report.CarReportDetailActivity"/>
         <activity
             android:name=".ui.feedback.FeedbackActivity"
-            android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".ui.policy.PolicyQueryListActivity" />
-        <activity android:name=".ui.politics.PoliticsDetailActivity" />
-        <activity android:name=".ui.politics.PoliticsListActivity" />
-        <activity android:name=".ui.politics.PoliticsSearchActivity" />
+            android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".ui.policy.PolicyQueryListActivity"/>
+        <activity android:name=".ui.politics.PoliticsDetailActivity"/>
+        <activity android:name=".ui.politics.PoliticsListActivity"/>
+        <activity android:name=".ui.politics.PoliticsSearchActivity"/>
         <activity
             android:name=".ui.politics.PoliticsActivity"
-            android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".ui.login.RegisterActivity" />
+            android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".ui.login.RegisterActivity"/>
         <activity
             android:name=".ui.splash.SplashActivity"
             android:theme="@style/NormalSplash">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ui.home.HomeActivity" />
-        <activity android:name=".ui.policy.PolicyQueryActivity" />
+        <activity android:name=".ui.home.HomeActivity"/>
+        <activity android:name=".ui.policy.PolicyQueryActivity"/>
 
         <meta-data
             android:name="design_width_in_dp"
-            android:value="375" />
+            android:value="375"/>
         <meta-data
             android:name="design_height_in_dp"
-            android:value="724" />
+            android:value="724"/>
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="c2edeaba918ff01a44f1ff71c712d9db" />
+            android:value="c2edeaba918ff01a44f1ff71c712d9db"/>
 
-        <service android:name="com.amap.api.location.APSService" />
-        <service android:name=".service.PatrolRecordService" />
+        <service android:name="com.amap.api.location.APSService"/>
+        <service android:name=".service.PatrolRecordService"/>
 
         <meta-data
             android:name="max_aspect"
-            android:value="2.2" />
+            android:value="2.2"/>
 
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity"/>
         <activity
             android:name=".ui.home.HomeTabActivity"
             android:launchMode="singleTask"
-            android:theme="@style/homeTheme" />
-        <activity android:name=".ui.login.LoginActivity" />
+            android:theme="@style/homeTheme"/>
+        <activity android:name=".ui.login.LoginActivity"/>
         <activity
             android:name=".ui.login.LoginConfirmActivity"
-            android:theme="@style/RedAppTheme" />
-        <activity android:name=".ui.learn.news.NewsDetailsActivity" />
-        <activity android:name=".ui.examine.ExamineActivity" />
-        <activity android:name=".ui.guardianapp.TaskAgentsActivity" />
-        <activity android:name=".ui.guardianapp.EventReportDetailSecondActivity" />
-        <activity android:name=".ui.guardianapp.EventReportDetailActivity" />
+            android:theme="@style/RedAppTheme"/>
+        <activity android:name=".ui.learn.news.NewsDetailsActivity"/>
+        <activity android:name=".ui.examine.ExamineActivity"/>
+        <activity android:name=".ui.guardianapp.TaskAgentsActivity"/>
+        <activity android:name=".ui.guardianapp.EventReportDetailSecondActivity"/>
+
+        <activity android:name=".ui.guardianapp.EventReportDetailActivity"/>
         <activity
             android:name=".ui.guardianapp.MyFaceLivenessActivity"
-            android:theme="@style/RedAppTheme2" />
-        <activity android:name=".ui.guardianapp.PatrolRecordActivity" />
-        <activity android:name=".ui.guardianapp.GridMapActivity" />
-        <activity android:name=".ui.guardianapp.ContactActivity" />
-        <activity android:name=".ui.guardianapp.EventReportListActivity" />
-        <activity android:name=".ui.guardianapp.EventReportActivity" />
-        <activity android:name=".ui.guardianapp.AmapPoiActivity" />
+            android:theme="@style/RedAppTheme2"/>
+        <activity android:name=".ui.guardianapp.PatrolRecordActivity"/>
+        <activity android:name=".ui.guardianapp.GridMapActivity"/>
+        <activity android:name=".ui.guardianapp.ContactActivity"/>
+        <activity android:name=".ui.guardianapp.EventReportListActivity"/>
+        <activity android:name=".ui.guardianapp.EventReportActivity"/>
+        <activity android:name=".ui.guardianapp.AmapPoiActivity"/>
         <activity
             android:name=".ui.feedback.FeedbackSearchActivity"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".ui.guardianapp.GuideActivity"
-            android:theme="@style/NormalSplash" />
+            android:theme="@style/NormalSplash"/>
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -93,7 +94,7 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths" />
+                android:resource="@xml/file_paths"/>
         </provider>
 
         <activity
@@ -103,8 +104,8 @@
             android:launchMode="singleTask"
             android:taskAffinity="net.sourceforge.simcpux"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
-        <activity android:name=".ui.video.VideoPlayActivity" />
-        <activity android:name=".ui.guardianapp.PhotoViewActivity" />
+        <activity android:name=".ui.video.VideoPlayActivity"/>
+        <activity android:name=".ui.guardianapp.PhotoViewActivity"/>
     </application>
 
 </manifest>

@@ -72,6 +72,24 @@ public class CustomVideoImgSelectView extends LinearLayout implements View.OnCli
         adapter = new GridImageAdapter(this.getContext(), new GridImageAdapter.onAddPicClickListener() {
             @Override
             public void onAddPicClick() {
+                if (true) {
+                    // 进入相册 以下是例子：不需要的api可以不写
+                    PictureSelector.create((Activity) getContext())
+                            .openGallery(PictureMimeType.ofImage())// 全部.PictureMimeType.ofAll()、图片.ofImage()、视频.ofVideo()、音频.ofAudio()
+                            .maxSelectNum(selectVideoList.size() == 0 ? 9 : 8)// 最大图片选择数量
+                            .imageSpanCount(4)// 每行显示个数
+                            .selectionMode(PictureConfig.MULTIPLE)// 多选 or 单选
+                            .previewImage(true)// 是否可预览图片
+                            .isCamera(true)// 是否显示拍照按钮
+                            .isZoomAnim(true)// 图片列表点击 缩放效果 默认true
+                            .synOrAsy(true)//同步true或异步false 压缩 默认同步
+                            .minimumCompressSize(100)// 小于100kb的图片不压缩
+                            .selectionMedia(selectImgList)// 是否传入已选图片
+                            .recordVideoSecond(30)
+                            .compress(true)
+                            .forResult(PictureConfig.CHOOSE_REQUEST);//结果回调onActivityResult code
+                    return;
+                }
                 if (bottomSheetDialog != null) {
                     bottomSheetDialog.show();
                 } else {

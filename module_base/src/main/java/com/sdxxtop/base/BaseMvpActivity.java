@@ -1,15 +1,19 @@
 package com.sdxxtop.base;
 
+import android.content.Context;
 import android.os.Bundle;
-
-import androidx.annotation.Nullable;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import com.sdxxtop.app.App;
 import com.sdxxtop.di.component.ActivityComponent;
 import com.sdxxtop.di.component.DaggerActivityComponent;
 import com.sdxxtop.di.module.ActivityModule;
+import com.sdxxtop.utils.ViewUtil;
 
 import javax.inject.Inject;
+
+import androidx.annotation.Nullable;
 
 public abstract class BaseMvpActivity<T extends RxPresenter> extends BaseActivity implements BaseView {
     @Inject
@@ -42,4 +46,20 @@ public abstract class BaseMvpActivity<T extends RxPresenter> extends BaseActivit
     }
 
     protected abstract void initInject();
+
+    public static void hideKeyboard(View view) {
+        InputMethodManager imm = (InputMethodManager) view.getContext()
+                .getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm != null) {
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
+    /**
+     * 控件往下移状态栏高度
+     *
+     * @param view
+     */
+    public void setTopViewPadding(View view) {
+        view.setPadding(0, ViewUtil.getStatusHeight(this), 0, 0);
+    }
 }

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="15dp">
+
+    <TextView
+        android:id="@+id/tv_line"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/white"/>
+
+    <TextView
+        android:id="@+id/tv_circle"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_below="@+id/tv_line"
+        android:layout_marginTop="2dp"
+        android:background="@drawable/shape_red_circle"/>
+
+    <TextView
+        android:id="@+id/tv_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_line"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/tv_circle"
+        android:text="已提交"
+        android:textColor="@color/black"
+        android:textSize="12sp"/>
+
+    <TextView
+        android:layout_width="1dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/tv_circle"
+        android:layout_marginLeft="6dp"
+        android:background="@drawable/imaginary_line"/>
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_status"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@+id/tv_circle"
+        android:text="2018-04-06 35:33:20"
+        android:textSize="11sp"/>
+
+</RelativeLayout>

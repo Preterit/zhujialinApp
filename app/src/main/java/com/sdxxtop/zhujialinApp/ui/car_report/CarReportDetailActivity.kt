@@ -1,6 +1,7 @@
 package com.sdxxtop.zhujialinApp.ui.car_report
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
@@ -15,13 +16,21 @@ import com.amap.api.maps.model.LatLng
 import com.amap.api.maps.model.MarkerOptions
 import com.amap.api.maps.model.MyLocationStyle
 import com.luck.picture.lib.permissions.RxPermissions
+import com.sdxxtop.app.Constants
 import com.sdxxtop.utils.AMapFindLocation2
+import com.sdxxtop.utils.SpUtil
 import com.sdxxtop.zhujialinApp.R
 import com.sdxxtop.zhujialinApp.base.KBaseActivity
 import com.sdxxtop.zhujialinApp.databinding.ActivityCarReportDetailBinding
+import com.sdxxtop.zhujialinApp.ui.car_report.data.StatusBean
+import com.sdxxtop.zhujialinApp.ui.guardianapp.EventReportDetailSecondActivity
 import com.sdxxtop.zhujialinApp.widget.img_video_picker.MediaBean
 import com.sdxxtop.zhujialinApp.widget.img_video_picker.PatrolDetailImgAdapter
 import io.reactivex.functions.Consumer
+import kotlinx.android.synthetic.main.activity_car_report_detail.*
+import org.jetbrains.anko.startActivity
+import java.text.ParseException
+import java.text.SimpleDateFormat
 import java.util.*
 
 /**
@@ -32,15 +41,28 @@ import java.util.*
 class CarReportDetailActivity : KBaseActivity<ActivityCarReportDetailBinding>() {
 
     private val imgAdapter = PatrolDetailImgAdapter(R.layout.gv_filter_image, null)
+    private val imgjiejueAdapter = PatrolDetailImgAdapter(R.layout.gv_filter_image, null)
+    private val statusAdapter = CarDetailStatusAdapter()
     private var mMapView: MapView? = null
     private var aMap: AMap? = null
+    var eventId = 0
+    val statusList = ArrayList<StatusBean>()
 
     override fun getLayoutId() = R.layout.activity_car_report_detail
 
+    @SuppressLint("CheckResult")
     override fun initView() {
         mBinding.vm = ViewModelProviders.of(this)[CarReportDetailModel::class.java]
         mBinding.recyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
         mBinding.recyclerView.adapter = imgAdapter
+
+        mBinding.recyclerViewStatus.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+        mBinding.recyclerViewStatus.adapter = statusAdapter
+
+        mBinding.recyclerViewJiejue.layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
+        mBinding.recyclerViewJiejue.adapter = imgjiejueAdapter
+
+
         mMapView = mBinding.mapView
         aMap = mMapView?.map
 
@@ -50,17 +72,6 @@ class CarReportDetailActivity : KBaseActivity<ActivityCarReportDetailBinding>() 
                 initMap()
             }
         })
-
-        val data = "http://xuxingtest.oss-cn-hangzhou.aliyuncs.com/envir/20190816153532396485.png," +
-                "http://xuxingtest.oss-cn-hangzhou.aliyuncs.com/envir/20190816153532860972.png," +
-                "http://xuxingtest.oss-cn-hangzhou.aliyuncs.com/envir/20190816153533476920.png," +
-                "http://xuxingtest.oss-cn-hangzhou.aliyuncs.com/envir/20190816153533807812.png," +
-                "http://xuxingtest.oss-cn-hangzhou.aliyuncs.com/envir/20190816153533165792.png," +
-                "http://xuxingtest.oss-cn-hangzhou.aliyuncs.com/envir/20190816153533533340.png," +
-                "http://xuxingtest.oss-cn-hangzhou.aliyuncs.com/envir/20190816153533534053.png," +
-                "http://xuxingtest.oss-cn-hangzhou.aliyuncs.com/envir/20190816153533256477.png," +
-                "http://xuxingtest.oss-cn-hangzhou.aliyuncs.com/envir/20190816153533498534.png"
-//        bandImgAndVideo(data, "", mBinding.recyclerView, imgAdapter)
     }
 
     private fun initMap() {
@@ -87,14 +98,49 @@ class CarReportDetailActivity : KBaseActivity<ActivityCarReportDetailBinding>() 
     }
 
     override fun loadData(isRefresh: Boolean) {
-        val eventId = intent.getIntExtra("eventId", 0)
+        eventId = intent.getIntExtra("eventId", 0)
         mBinding.vm?.loadData(eventId)
     }
 
     override fun initObserver() {
         mBinding.vm?.detailBeanInfo?.observe(this, androidx.lifecycle.Observer {
-            val imgStr = it.image
-            bandImgAndVideo(imgStr, "", mBinding.recyclerView, imgAdapter)
+            bandImgAndVideo(it.image, "", mBinding.recyclerView, imgAdapter)
+            if (it.status == 1) mBinding.llParfaLayout.visibility = View.GONE else mBinding.llParfaLayout.visibility = View.VISIBLE
+            when (it.important) {//重要性:1=低,2=中,3=高
+                1 -> mBinding.tvImportanceType.text = "低"
+                2 -> mBinding.tvImportanceType.text = "中"
+                3 -> mBinding.tvImportanceType.text = "高"
+            }
+            mBinding.tvJiejueTime.text = "解决反馈时间: " + handleTime(it.finish_time)
+            mBinding.tvEndtime.text = handleTime(it.end_date)
+
+            statusList.clear()
+            when (it.status) {//事件状态:1=待派发, 2=待解决,3=完成
+                1 -> statusList.add(StatusBean("待派发", ""))  // 上报时间
+                2 -> {
+                    statusList.add(StatusBean("已派发", "" + it.send_time))     // 派发时间
+                    statusList.add(StatusBean("待解决", ""))     // 待解决时间
+                }
+                3 -> {
+                    statusList.add(StatusBean("已派发", "" + it.report_time))
+                    statusList.add(StatusBean("已解决", "" + it.send_time))
+                    statusList.add(StatusBean("已完成", "" + it.finish_time))
+                }
+            }
+            statusAdapter.replaceData(statusList)
+            if (it.send_id == SpUtil.getInt(Constants.USER_ID, 0) && it.status == 2) {
+                mBinding.llBtnLayout.visibility = View.VISIBLE
+            } else {
+                mBinding.llBtnLayout.visibility = View.GONE
+            }
+
+            if (it.status == 3) {
+                mBinding.llJiejueLayout.visibility = View.VISIBLE
+            } else {
+                mBinding.llJiejueLayout.visibility = View.GONE
+            }
+            bandImgAndVideo(it.finish_img, "", mBinding.recyclerViewJiejue, imgjiejueAdapter)
+
         })
     }
 
@@ -118,6 +164,35 @@ class CarReportDetailActivity : KBaseActivity<ActivityCarReportDetailBinding>() 
         }
     }
 
+    override fun onClick(v: View?) {
+        when (v) {
+            btn_modify -> {  // 完成事件
+                val status = 3
+                startActivity<EventReportDetailSecondActivity>(
+                        "eventId" to "" + eventId,
+                        "eventType" to 3
+                )
+            }
+        }
+    }
+
+    private fun handleTime(time: String): String {
+        if (TextUtils.isEmpty(time)) {
+            return ""
+        }
+
+        val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+        val sdf2 = SimpleDateFormat("yyyy.MM.dd")
+        try {
+            val date = sdf.parse(time)
+            return sdf2.format(date)
+        } catch (e: ParseException) {
+            e.printStackTrace()
+        }
+
+        return ""
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         //在activity执行onDestroy时执行mMapView.onDestroy()，销毁地图
@@ -126,6 +201,7 @@ class CarReportDetailActivity : KBaseActivity<ActivityCarReportDetailBinding>() 
 
     override fun onResume() {
         super.onResume()
+        mBinding.vm?.loadData(eventId)
         //在activity执行onResume时执行mMapView.onResume ()，重新绘制加载地图
         mMapView?.onResume()
     }

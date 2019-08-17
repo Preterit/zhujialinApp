@@ -26,8 +26,8 @@ class MyCarEventAdapter(layoutResId: Int = R.layout.item_mycar_event) : BaseQuic
         tvStatus?.text = getStatusStr(item.status)
         tvStatus?.textColor = Color.parseColor("#73E373")
         tvCarNum?.text = item.car_name
-        tvAddress?.text = "上报地点: "+item.address
-        tvTime?.text = "上报时间: "+item.report_time
+        tvAddress?.text = "上报地点: " + item.address
+        tvTime?.text = "上报时间: " + item.report_time
 
         helper?.itemView?.onClick {
             val intent = Intent(mContext, CarReportDetailActivity::class.java)
@@ -36,20 +36,17 @@ class MyCarEventAdapter(layoutResId: Int = R.layout.item_mycar_event) : BaseQuic
         }
     }
 
-    //事件状态:1=已提交,2=待派发,3=已派发,4=已完成
+    //事件状态:1=待派发, 2=待解决,3=待验收, 4=验收通过,5=验收不通
     fun getStatusStr(status: Int): String {
         var str = ""
         when (status) {
             1 -> {
-                str = "已提交"
-            }
-            2 -> {
                 str = "待派发"
             }
-            3 -> {
-                str = "已派发"
+            2 -> {
+                str = "待解决"
             }
-            4 -> {
+            3 -> {
                 str = "已完成"
             }
         }

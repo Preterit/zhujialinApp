@@ -14,7 +14,7 @@
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="现场照片/视频"
+            android:text="现场照片: "
             android:textColor="@color/color_313131"
             android:textSize="15sp"/>
 
@@ -22,7 +22,7 @@
             android:id="@+id/tv_desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="(最多上传照片/视频9张)"
+            android:text="(最多上传9张照片)"
             android:textColor="@color/color_E0E0E0"
             android:textSize="15sp"/>
 

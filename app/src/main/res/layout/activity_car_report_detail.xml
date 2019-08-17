@@ -193,7 +193,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:paddingLeft="10dp"
-                        android:text="XXXX部门"
+                        android:text="@{vm.detailBean.get().part_name}"
                         android:textColor="@color/black"
                         android:textSize="12sp"
                         tools:text="XXXX部门"/>
@@ -223,110 +223,194 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/ll_parfa_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:background="@color/white"
+                        android:paddingTop="10dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingLeft="10dp"
+                            android:text="派发时间："
+                            android:textColor="@color/black"
+                            android:textSize="12sp"/>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingLeft="10dp"
+                            android:text="@{vm.detailBean.get().send_time}"
+                            android:textColor="@color/black"
+                            android:textSize="12sp"
+                            tools:text="2019.08.08 17:34:04"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:paddingTop="10dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingLeft="10dp"
+                            android:text="派发人："
+                            android:textColor="@color/black"
+                            android:textSize="12sp"/>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingLeft="10dp"
+                            android:text="@{vm.detailBean.get().send_name}"
+                            android:textColor="@color/black"
+                            android:textSize="12sp"
+                            tools:text="派发A"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:paddingTop="10dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingLeft="10dp"
+                            android:text="解决日期："
+                            android:textColor="@color/black"
+                            android:textSize="12sp"/>
+
+                        <TextView
+                            android:id="@+id/tv_endtime"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingLeft="10dp"
+                            android:textColor="@color/black"
+                            android:textSize="12sp"
+                            tools:text="2019-08-09"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingLeft="10dp"
+                            android:text="事情重要性："
+                            android:textColor="@color/black"
+                            android:textSize="12sp"/>
+
+                        <TextView
+                            android:id="@+id/tv_importance_type"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingLeft="10dp"
+                            android:text="高"
+                            android:textColor="@color/black"
+                            android:textSize="12sp"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_jiejue_layout"
+                    tools:visibility="visible"
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:background="@color/white"
-                    android:paddingTop="10dp">
+                    android:orientation="vertical">
 
                     <TextView
-                        android:layout_width="0dp"
+                        android:id="@+id/tv_jiejue_time"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:paddingLeft="10dp"
-                        android:text="派发时间："
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
                         android:textColor="@color/black"
-                        android:textSize="12sp"/>
+                        tools:text="解决反馈时间:2017.08.17"/>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerView_jiejue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:background="@color/white"/>
 
                     <TextView
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:paddingLeft="10dp"
-                        android:text="2019.08.08 17:34:04"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="@{@string/fanhuistr+vm.detailBean.get().finish_desc}"
                         android:textColor="@color/black"
-                        android:textSize="12sp"/>
+                        tools:text="解决反馈描述:2017.08.17"/>
+
                 </LinearLayout>
 
-                <LinearLayout
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView_status"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:paddingTop="10dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:paddingLeft="10dp"
-                        android:text="派发人："
-                        android:textColor="@color/black"
-                        android:textSize="12sp"/>
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:paddingLeft="10dp"
-                        android:text="派发A"
-                        android:textColor="@color/black"
-                        android:textSize="12sp"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:paddingTop="10dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:paddingLeft="10dp"
-                        android:text="解决日期："
-                        android:textColor="@color/black"
-                        android:textSize="12sp"/>
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:paddingLeft="10dp"
-                        android:text="2019-08-09"
-                        android:textColor="@color/black"
-                        android:textSize="12sp"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:paddingLeft="10dp"
-                        android:text="事情重要性："
-                        android:textColor="@color/black"
-                        android:textSize="12sp"/>
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:paddingLeft="10dp"
-                        android:text="高"
-                        android:textColor="@color/black"
-                        android:textSize="12sp"/>
-
-                </LinearLayout>
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@color/white"/>
 
             </LinearLayout>
 
         </androidx.core.widget.NestedScrollView>
+
+        <LinearLayout
+            android:id="@+id/ll_btn_layout"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp"
+            android:paddingTop="15dp"
+            android:paddingRight="15dp"
+            android:paddingBottom="10dp"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <Button
+                android:id="@+id/btn_modify"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_green_solid_bg"
+                android:onClick="@{(v)->presenter.onClick(v)}"
+                android:text="去解决"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+
     </LinearLayout>
 </layout>
