@@ -18,6 +18,7 @@ import com.amap.api.maps.model.MyLocationStyle
 import com.luck.picture.lib.permissions.RxPermissions
 import com.sdxxtop.app.Constants
 import com.sdxxtop.utils.AMapFindLocation2
+import com.sdxxtop.utils.DateUtil
 import com.sdxxtop.utils.SpUtil
 import com.sdxxtop.zhujialinApp.R
 import com.sdxxtop.zhujialinApp.base.KBaseActivity
@@ -53,6 +54,7 @@ class CarReportDetailActivity : KBaseActivity<ActivityCarReportDetailBinding>() 
     @SuppressLint("CheckResult")
     override fun initView() {
         mBinding.vm = ViewModelProviders.of(this)[CarReportDetailModel::class.java]
+        eventId = intent.getIntExtra("eventId", 0)
         mBinding.recyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
         mBinding.recyclerView.adapter = imgAdapter
 
@@ -90,18 +92,16 @@ class CarReportDetailActivity : KBaseActivity<ActivityCarReportDetailBinding>() 
             instance.stopLocation()
             val latLng = LatLng(it.latitude, it.longitude)
             aMap?.moveCamera(CameraUpdateFactory.changeLatLng(latLng))
-            val options = MarkerOptions()
-                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.grid_map_icon))
-                    .position(latLng)
-            aMap?.addMarker(options)
         }
     }
 
     override fun loadData(isRefresh: Boolean) {
-        eventId = intent.getIntExtra("eventId", 0)
-        mBinding.vm?.loadData(eventId)
+
     }
 
+    /**
+     * 刷新数据
+     */
     override fun initObserver() {
         mBinding.vm?.detailBeanInfo?.observe(this, androidx.lifecycle.Observer {
             bandImgAndVideo(it.image, "", mBinding.recyclerView, imgAdapter)
@@ -112,7 +112,8 @@ class CarReportDetailActivity : KBaseActivity<ActivityCarReportDetailBinding>() 
                 3 -> mBinding.tvImportanceType.text = "高"
             }
             mBinding.tvJiejueTime.text = "解决反馈时间: " + handleTime(it.finish_time)
-            mBinding.tvEndtime.text = handleTime(it.end_date)
+//            mBinding.tvEndtime.text = handleTime(it.end_date)
+            mBinding.tvEndtime.text =handleTime( DateUtil.stampToDate(it.end_time))
 
             statusList.clear()
             when (it.status) {//事件状态:1=待派发, 2=待解决,3=完成
@@ -122,8 +123,8 @@ class CarReportDetailActivity : KBaseActivity<ActivityCarReportDetailBinding>() 
                     statusList.add(StatusBean("待解决", ""))     // 待解决时间
                 }
                 3 -> {
-                    statusList.add(StatusBean("已派发", "" + it.report_time))
-                    statusList.add(StatusBean("已解决", "" + it.send_time))
+                    statusList.add(StatusBean("已派发", "" + it.send_time))
+                    statusList.add(StatusBean("已解决", "" + it.finish_time))
                     statusList.add(StatusBean("已完成", "" + it.finish_time))
                 }
             }
@@ -141,6 +142,15 @@ class CarReportDetailActivity : KBaseActivity<ActivityCarReportDetailBinding>() 
             }
             bandImgAndVideo(it.finish_img, "", mBinding.recyclerViewJiejue, imgjiejueAdapter)
 
+            if (!TextUtils.isEmpty(it.loglng)) {
+                val spUtil = it?.loglng?.split(";")
+                val latLng = LatLng(java.lang.Double.parseDouble(spUtil?.get(0)), java.lang.Double.parseDouble(spUtil?.get(1)))
+                val options = MarkerOptions()
+                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.grid_map_icon))
+                        .position(latLng)
+                aMap?.addMarker(options)
+                aMap?.moveCamera(CameraUpdateFactory.changeLatLng(latLng))
+            }
         })
     }
 

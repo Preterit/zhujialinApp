@@ -43,12 +43,21 @@ public class EventIndexBean {
         private int event_id;
         private String title;
         private String end_date;
+        private String end_time;
         private int status;
         private String place;
         private String add_time;
         private String important_type;
         private String address;
         private int is_car;
+
+        public String getEnd_time() {
+            return end_time;
+        }
+
+        public void setEnd_time(String end_time) {
+            this.end_time = end_time;
+        }
 
         public String getAddress() {
             return address;

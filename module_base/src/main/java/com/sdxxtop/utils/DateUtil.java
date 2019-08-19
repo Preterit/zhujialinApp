@@ -1,5 +1,7 @@
 package com.sdxxtop.utils;
 
+import android.text.TextUtils;
+
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 
 import java.text.DateFormat;
@@ -887,6 +889,20 @@ public class DateUtil {
         }
         daysAgo = dft.format(cal.getTime());
         return daysAgo;
+    }
+    /*
+     * 将时间戳转换为时间
+     */
+    public static String stampToDate(String s){
+        String res ="";
+        if (TextUtils.isEmpty(s))
+            return res;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        long lt = new Long(s);
+        Date date = new Date(lt*1000);
+        res = simpleDateFormat.format(date);
+        return res;
     }
 
 }

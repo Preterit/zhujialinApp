@@ -24,7 +24,7 @@ public class LLLLL extends BaseQuickAdapter<String, BaseViewHolder> {
         for (String s : list) {
 
         }
-
+        Double.parseDouble("1231232.23123");
 
     }
 

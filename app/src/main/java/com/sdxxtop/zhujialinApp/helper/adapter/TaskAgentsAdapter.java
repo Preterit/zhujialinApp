@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.sdxxtop.utils.DateUtil;
 import com.sdxxtop.zhujialinApp.R;
 import com.sdxxtop.zhujialinApp.presenter.bean.EventIndexBean;
 import com.sdxxtop.zhujialinApp.ui.car_report.CarReportDetailActivity;
@@ -44,8 +45,8 @@ public class TaskAgentsAdapter extends BaseQuickAdapter<EventIndexBean.EventBean
 
         tvImportant.setText(sb);
 
-        String endDate = item.getEnd_date();
-        tvDate.setText("截止日期：" + endDate);
+        String endDate = item.getEnd_time();
+        tvDate.setText("截止日期：" + DateUtil.stampToDate(endDate));
 
         String strStatus = "";
         if (is_car == 1) {
