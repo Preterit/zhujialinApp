@@ -16,15 +16,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.jakewharton.rxbinding3.view.RxView;
 import com.jakewharton.rxbinding3.widget.RxTextView;
 import com.sdxxtop.app.Constants;
 import com.sdxxtop.utils.SpUtil;
 import com.sdxxtop.utils.UIUtils;
-import com.sdxxtop.zhujialinApp.MainActivity;
 import com.sdxxtop.zhujialinApp.R;
+import com.sdxxtop.zhujialinApp.alipush.AnalyticsHome;
 import com.sdxxtop.zhujialinApp.base.GBaseMvpActivity;
 import com.sdxxtop.zhujialinApp.data.LoginBean;
 import com.sdxxtop.zhujialinApp.helper.control.DelTextWatcher;
@@ -224,6 +222,9 @@ public class LoginActivity extends GBaseMvpActivity<LoginPresenter> implements L
         SpUtil.putInt(Constants.USER_ID, userid);
         SpUtil.putString(Constants.MOBILE, mobile);
         SpUtil.putInt(Constants.TYPE, type);
+
+        //阿里云推送绑定账号
+        AnalyticsHome.bindAccount(mobile);
 
         if (confirm == 0) {
             Intent intent = new Intent(this, LoginConfirmActivity.class);

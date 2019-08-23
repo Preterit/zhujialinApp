@@ -113,4 +113,8 @@ dependencies {
     implementation 'com.contrarywind:Android-PickerView:4.1.8'
     implementation project(path: ':faceplatform')
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:5.3.1'
+
+    //阿里云推送
+    implementation 'com.aliyun.ams:alicloud-android-push:3.1.4'
+    implementation 'com.aliyun.ams:alicloud-android-third-push:3.0.6@aar'
 }

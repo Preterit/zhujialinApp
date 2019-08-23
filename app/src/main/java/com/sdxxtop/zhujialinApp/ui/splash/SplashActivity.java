@@ -12,6 +12,7 @@ import com.sdxxtop.app.Constants;
 import com.sdxxtop.utils.SpUtil;
 import com.sdxxtop.zhujialinApp.BuildConfig;
 import com.sdxxtop.zhujialinApp.R;
+import com.sdxxtop.zhujialinApp.alipush.AnalyticsHome;
 import com.sdxxtop.zhujialinApp.base.GBaseMvpActivity;
 import com.sdxxtop.zhujialinApp.data.AutoLoginBean;
 import com.sdxxtop.zhujialinApp.ui.guardianapp.GuideActivity;
@@ -96,6 +97,8 @@ public class SplashActivity extends GBaseMvpActivity<SplashPresenter> implements
 
     @Override
     public void autoSuccess(AutoLoginBean autoLoginBean) {
+        //阿里云推送绑定账号
+        AnalyticsHome.bindAccount(SpUtil.getString(Constants.MOBILE));
 
         String autoToken = SpUtil.getString(Constants.AUTO_TOKEN);
         if (TextUtils.isEmpty(autoToken)) {

@@ -1,4 +1,4 @@
-apply plugin: 'com.android.library'
+ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
@@ -22,5 +22,5 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 //    api files('libs/facesdk.jar')
     api files('libs/ast.jar')
-    implementation files('libs/baidu_license.jar')
+    api files('libs/baidu_license.jar')
 }
