@@ -8,11 +8,11 @@ import com.sdxxtop.model.http.net.Params
 import com.sdxxtop.model.http.util.RxUtils
 import com.sdxxtop.utils.UIUtils
 import com.sdxxtop.zhujialinApp.base.BaseViewModel
+import com.sdxxtop.zhujialinApp.data.CarTypeBean
 import com.sdxxtop.zhujialinApp.data.PartBean
 import com.sdxxtop.zhujialinApp.extens.set
 import com.sdxxtop.zhujialinApp.http.net.RetrofitHelper
 import java.io.File
-import java.util.*
 
 /**
  * @author :  lwb
@@ -22,6 +22,7 @@ import java.util.*
 class CarReportModel : BaseViewModel() {
 
     val mPartList = MutableLiveData<ArrayList<PartBean>>()
+    val mCarTypeList = MutableLiveData<ArrayList<CarTypeBean>>()
     val addReprtSuccess = MutableLiveData<Boolean>()
 
     fun loadArea() {
@@ -39,7 +40,7 @@ class CarReportModel : BaseViewModel() {
         addDisposable(disposable)
     }
 
-    fun addReport(carNum: String, name: String, phone: String, address: String, loglng: String, describes: String ,reportId:Int, imagePushPath: List<File>) {
+    fun addReport(carNum: String, name: String, phone: String, address: String, loglng: String, describes: String, reportId: Int, imagePushPath: List<File>, mSelectCarType: Int) {
         val imageParams = ImageParams()
         imageParams.put("cne", carNum)
         imageParams.put("cdr", name)
@@ -48,6 +49,7 @@ class CarReportModel : BaseViewModel() {
         imageParams.put("lg", loglng)
         imageParams.put("ds", describes)
         imageParams.put("rd", reportId)
+        imageParams.put("ci", mSelectCarType)
         imageParams.addImagePathList("img[]", imagePushPath)
 
         val observable = RetrofitHelper.getGuardianService().postCarReport(imageParams.imgData)
@@ -57,6 +59,21 @@ class CarReportModel : BaseViewModel() {
             }
 
             override fun onFailure(code: Int, error: String) {
+                UIUtils.showToast(error)
+            }
+        })
+        addDisposable(disposable)
+    }
+
+    fun loadCarType() {
+        val params = Params()
+        val politicsSearch = RetrofitHelper.getGuardianService().postCarType(params.data)
+        val disposable = RxUtils.handleDataHttp(politicsSearch, object : IRequestCallback<ArrayList<CarTypeBean>> {
+            override fun onSuccess(t: ArrayList<CarTypeBean>?) {
+                mCarTypeList.set(t)
+            }
+
+            override fun onFailure(code: Int, error: String?) {
                 UIUtils.showToast(error)
             }
         })

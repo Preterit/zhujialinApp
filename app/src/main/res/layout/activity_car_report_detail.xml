@@ -198,6 +198,31 @@
                         android:textSize="12sp"
                         tools:text="XXXX部门"/>
                 </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:paddingBottom="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:text="车辆类别"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:text="@{vm.detailBean.get().category_name}"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        tools:text="XXXX部门"/>
+                </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView"

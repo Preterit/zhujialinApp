@@ -3,6 +3,7 @@ package com.sdxxtop.zhujialinApp.http;
 import com.sdxxtop.model.bean.InitBean;
 import com.sdxxtop.model.bean.RequestBean;
 import com.sdxxtop.zhujialinApp.data.AutoLoginBean;
+import com.sdxxtop.zhujialinApp.data.CarTypeBean;
 import com.sdxxtop.zhujialinApp.data.ContactIndexBean;
 import com.sdxxtop.zhujialinApp.data.EventSearchTitleBean;
 import com.sdxxtop.zhujialinApp.data.ExamineFinishBean;
@@ -249,5 +250,9 @@ public interface GuardianService {
     @FormUrlEncoded
     @POST("notice/index")
     Observable<RequestBean<NoticeData>> postNoticeIndex(@Field("data") String data);
+
+    @FormUrlEncoded
+    @POST("car_event/showType")
+    Observable<RequestBean<ArrayList<CarTypeBean>>> postCarType(@Field("data") String data);
 
 }

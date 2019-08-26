@@ -22,3 +22,8 @@ data class PushDataBean(
     val politics_id: Int,
     val url:String
 )
+
+data class CarTypeBean(
+        val id: Int,
+        val name: String
+)

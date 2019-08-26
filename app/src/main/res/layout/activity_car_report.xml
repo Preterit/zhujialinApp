@@ -86,6 +86,15 @@
                     app:tatv_text_view="车辆位置"/>
 
                 <com.sdxxtop.ui.widget.TextAndTextView
+                    android:id="@+id/tatv_car_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{(v) -> presenter.onClick(v)}"
+                    app:tatv_star_is_show="true"
+                    app:tatv_text_right_hint_value="请点击选择"
+                    app:tatv_text_view="车辆类别"/>
+
+                <com.sdxxtop.ui.widget.TextAndTextView
                     android:id="@+id/tatv_report_part"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

@@ -24,5 +24,6 @@ data class CarReportDetailBean(
         val part_name: String,
         val finish_img: String,
         val finish_desc: String,
+        val category_name: String,
         val status: Int
 )

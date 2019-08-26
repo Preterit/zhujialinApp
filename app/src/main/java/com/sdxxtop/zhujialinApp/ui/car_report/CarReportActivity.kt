@@ -14,6 +14,7 @@ import com.sdxxtop.ui.dialog.IosAlertDialog
 import com.sdxxtop.utils.AMapFindLocation2
 import com.sdxxtop.zhujialinApp.R
 import com.sdxxtop.zhujialinApp.base.KBaseActivity
+import com.sdxxtop.zhujialinApp.data.CarTypeBean
 import com.sdxxtop.zhujialinApp.data.PartBean
 import com.sdxxtop.zhujialinApp.databinding.ActivityCarReportBinding
 import com.sdxxtop.zhujialinApp.extens.toast
@@ -34,7 +35,9 @@ class CarReportActivity : KBaseActivity<ActivityCarReportBinding>() {
 
     var lonLng: String? = null
     private var singleReportPathDataView = SingleStyleView(this)
+    private var mCarTypePicker = SingleStyleView(this)
     var mSelectPartId = -1
+    var mSelectCarType = -1
 
     override fun getLayoutId() = R.layout.activity_car_report
 
@@ -66,9 +69,11 @@ class CarReportActivity : KBaseActivity<ActivityCarReportBinding>() {
 
     override fun loadData(isRefresh: Boolean) {
         mBinding.vm?.loadArea()
+        mBinding.vm?.loadCarType()
     }
 
     override fun onClick(v: View?) {
+        hideKeyboard(mBinding.tvTitle)
         when (v) {
             tatv_happen -> {
                 selectHappen()
@@ -77,8 +82,10 @@ class CarReportActivity : KBaseActivity<ActivityCarReportBinding>() {
                 showReportConfirmDialog()
             }
             tatv_report_part -> {
-                hideKeyboard(mBinding.tvTitle)
                 singleReportPathDataView.show()
+            }
+            tatv_car_type -> {
+                mCarTypePicker.show()
             }
         }
     }
@@ -87,12 +94,36 @@ class CarReportActivity : KBaseActivity<ActivityCarReportBinding>() {
         mBinding.vm?.mPartList?.observe(this, Observer {
             setPickerData(it)
         })
+        mBinding.vm?.mCarTypeList?.observe(this, Observer {
+            setCarTypeData(it)
+        })
         mBinding.vm?.addReprtSuccess?.observe(this, Observer {
             hideLoadingDialog()
             toast("上报成功")
             finish()
             startActivity<MyCarReportActivity>()
         })
+    }
+
+    private fun setCarTypeData(it: java.util.ArrayList<CarTypeBean>) {
+        if (it.isEmpty()) {
+            return
+        }
+        val queryData = ArrayList<String>()
+        for (s in it) {
+            queryData.add(s.name)
+        }
+        mCarTypePicker = SingleStyleView(this)
+        mCarTypePicker.setOnItemSelectLintener(SingleStyleView.OnItemSelectLintener { result ->
+            mBinding.tatvCarType.textRightText.text = result
+            mBinding.tatvCarType.textRightText.textColor = resources.getColor(R.color.black)
+            for (item in it) {
+                if (result == item.name) {
+                    mSelectCarType = item.id
+                }
+            }
+        })
+        mCarTypePicker.replaceData(queryData)
     }
 
     private fun setPickerData(it: ArrayList<PartBean>) {
@@ -142,6 +173,10 @@ class CarReportActivity : KBaseActivity<ActivityCarReportBinding>() {
             toast("请选择地址")
             return
         }
+        if (mSelectCarType == -1) {
+            toast("请选择车辆类别")
+            return
+        }
         if (mSelectPartId == -1) {
             toast("请选择上报部门")
             return
@@ -150,7 +185,7 @@ class CarReportActivity : KBaseActivity<ActivityCarReportBinding>() {
         content.ifEmpty { toast("填写描述"); return }
 
         showLoadingDialog()
-        mBinding.vm?.addReport(carNum, name, phone, address, lonLng!!, content, mSelectPartId, imgList)
+        mBinding.vm?.addReport(carNum, name, phone, address, lonLng!!, content, mSelectPartId, imgList,mSelectCarType)
     }
 
     private fun selectHappen() {
