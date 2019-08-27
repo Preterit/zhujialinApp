@@ -10,6 +10,7 @@ import com.sdxxtop.utils.UIUtils;
 import com.sdxxtop.zhujialinApp.base.GRxPresenter;
 import com.sdxxtop.zhujialinApp.data.EventSearchTitleBean;
 import com.sdxxtop.zhujialinApp.data.PartBean;
+import com.sdxxtop.zhujialinApp.data.PartList;
 import com.sdxxtop.zhujialinApp.data.ShowPartBean;
 import com.sdxxtop.zhujialinApp.presenter.constract.EventReportContract;
 
@@ -63,13 +64,13 @@ public class EventReportPresenter extends GRxPresenter<EventReportContract.IView
 
     public void loadAera() {
         Params params = new Params();
-        Observable<RequestBean<ArrayList<PartBean>>> observable = getService().postEventShowPart2(params.getData());
-        Disposable disposable = RxUtils.handleDataHttp(observable, new IRequestCallback<ArrayList<PartBean>>() {
+        Observable<RequestBean<PartList>> observable = getService().postEventShowPart2(params.getData());
+        Disposable disposable = RxUtils.handleDataHttp(observable, new IRequestCallback<PartList>() {
             @Override
-            public void onSuccess(ArrayList<PartBean> showPartBean) {
+            public void onSuccess(PartList showPartBean) {
 //                mView.modifyRefresh();
                 List<ShowPartBean.PartBean> part = new ArrayList<>();
-                for (PartBean partBean : showPartBean) {
+                for (PartBean partBean : showPartBean.getData()) {
                     ShowPartBean.PartBean partBeanX = new ShowPartBean.PartBean();
                     int part_id = partBean.getPart_id();
                     String part_name = partBean.getPart_name();

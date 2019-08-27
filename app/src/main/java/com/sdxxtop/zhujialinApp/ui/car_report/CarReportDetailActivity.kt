@@ -113,7 +113,7 @@ class CarReportDetailActivity : KBaseActivity<ActivityCarReportDetailBinding>() 
             }
             mBinding.tvJiejueTime.text = "解决反馈时间: " + handleTime(it.finish_time)
 //            mBinding.tvEndtime.text = handleTime(it.end_date)
-            mBinding.tvEndtime.text =handleTime( DateUtil.stampToDate(it.end_time))
+            mBinding.tvEndtime.text = handleTime(DateUtil.stampToDate(it.end_time))
 
             statusList.clear()
             when (it.status) {//事件状态:1=待派发, 2=待解决,3=完成
@@ -143,8 +143,8 @@ class CarReportDetailActivity : KBaseActivity<ActivityCarReportDetailBinding>() 
             bandImgAndVideo(it.finish_img, "", mBinding.recyclerViewJiejue, imgjiejueAdapter)
 
             if (!TextUtils.isEmpty(it.loglng)) {
-                val spUtil = it?.loglng?.split(";")
-                val latLng = LatLng(java.lang.Double.parseDouble(spUtil?.get(0)), java.lang.Double.parseDouble(spUtil?.get(1)))
+                val spUtil = it?.loglng?.split(",")
+                val latLng = LatLng(java.lang.Double.parseDouble(spUtil?.get(1)), java.lang.Double.parseDouble(spUtil?.get(0)))
                 val options = MarkerOptions()
                         .icon(BitmapDescriptorFactory.fromResource(R.drawable.grid_map_icon))
                         .position(latLng)

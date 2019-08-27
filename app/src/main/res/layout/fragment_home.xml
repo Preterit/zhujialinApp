@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         app:bgColor="@color/transparent"
         app:titleColor="@color/white"
-        app:titleValue="岸堤镇" />
+        app:titleValue="朱家林" />
 
     <FrameLayout
         android:layout_width="match_parent"

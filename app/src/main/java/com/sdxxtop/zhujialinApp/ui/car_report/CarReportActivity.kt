@@ -33,9 +33,9 @@ import org.jetbrains.anko.textColor
  */
 class CarReportActivity : KBaseActivity<ActivityCarReportBinding>() {
 
-    var lonLng: String? = null
-    private var singleReportPathDataView = SingleStyleView(this)
-    private var mCarTypePicker = SingleStyleView(this)
+    var lonLng: String = ""
+    private var singleReportPathDataView = SingleStyleView(this, 1)
+    private var mCarTypePicker = SingleStyleView(this, 0)
     var mSelectPartId = -1
     var mSelectCarType = -1
 
@@ -60,7 +60,7 @@ class CarReportActivity : KBaseActivity<ActivityCarReportBinding>() {
                 instance.setLocationCompanyListener {
                     instance.stopLocation()
 //                    val latLng = LatLng(it.latitude, it.longitude)
-                    lonLng = "" + it.latitude + ";" + it.longitude
+                    lonLng = "" + it.longitude + "," + it.latitude
                     mBinding.tatvHappen.textRightText.text = it.address
                 }
             }
@@ -105,7 +105,7 @@ class CarReportActivity : KBaseActivity<ActivityCarReportBinding>() {
         })
     }
 
-    private fun setCarTypeData(it: java.util.ArrayList<CarTypeBean>) {
+    private fun setCarTypeData(it: List<CarTypeBean>) {
         if (it.isEmpty()) {
             return
         }
@@ -113,7 +113,7 @@ class CarReportActivity : KBaseActivity<ActivityCarReportBinding>() {
         for (s in it) {
             queryData.add(s.name)
         }
-        mCarTypePicker = SingleStyleView(this)
+        mCarTypePicker = SingleStyleView(this, 1)
         mCarTypePicker.setOnItemSelectLintener(SingleStyleView.OnItemSelectLintener { result ->
             mBinding.tatvCarType.textRightText.text = result
             mBinding.tatvCarType.textRightText.textColor = resources.getColor(R.color.black)
@@ -126,7 +126,7 @@ class CarReportActivity : KBaseActivity<ActivityCarReportBinding>() {
         mCarTypePicker.replaceData(queryData)
     }
 
-    private fun setPickerData(it: ArrayList<PartBean>) {
+    private fun setPickerData(it: List<PartBean>) {
         if (it.isEmpty()) {
             return
         }
@@ -134,7 +134,7 @@ class CarReportActivity : KBaseActivity<ActivityCarReportBinding>() {
         for (s in it) {
             queryData.add(s.part_name)
         }
-        singleReportPathDataView = SingleStyleView(this)
+        singleReportPathDataView = SingleStyleView(this, 1)
         singleReportPathDataView.setOnItemSelectLintener(SingleStyleView.OnItemSelectLintener { result ->
             mBinding.tatvReportPart.textRightText.text = result
             mBinding.tatvReportPart.textRightText.textColor = resources.getColor(R.color.black)
@@ -185,7 +185,7 @@ class CarReportActivity : KBaseActivity<ActivityCarReportBinding>() {
         content.ifEmpty { toast("填写描述"); return }
 
         showLoadingDialog()
-        mBinding.vm?.addReport(carNum, name, phone, address, lonLng!!, content, mSelectPartId, imgList,mSelectCarType)
+        mBinding.vm?.addReport(carNum, name, phone, address, lonLng, content, mSelectPartId, imgList, mSelectCarType)
     }
 
     private fun selectHappen() {

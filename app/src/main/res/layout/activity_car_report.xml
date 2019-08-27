@@ -95,6 +95,7 @@
                     app:tatv_text_view="车辆类别"/>
 
                 <com.sdxxtop.ui.widget.TextAndTextView
+                    app:tatv_star_is_show="true"
                     android:id="@+id/tatv_report_part"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

@@ -8,10 +8,10 @@ import com.sdxxtop.model.http.util.RxUtils
 import com.sdxxtop.utils.UIUtils
 import com.sdxxtop.zhujialinApp.base.BaseViewModel
 import com.sdxxtop.zhujialinApp.data.PartBean
+import com.sdxxtop.zhujialinApp.data.PartList
 import com.sdxxtop.zhujialinApp.extens.set
 import com.sdxxtop.zhujialinApp.http.net.RetrofitHelper
 import com.sdxxtop.zhujialinApp.ui.feedback.data.ProposalBean
-import com.sdxxtop.zhujialinApp.ui.policy.data.PolicyQueryBean
 import java.io.File
 
 /**
@@ -37,10 +37,10 @@ class FeedbackViewModel : BaseViewModel() {
     fun load() {
         val params = Params()
         val eventShowPart = RetrofitHelper.getGuardianService().postEventShowPart(params.data)
-        val disposable = RxUtils.handleDataHttp(eventShowPart, object : IRequestCallback<ArrayList<PartBean>> {
-            override fun onSuccess(t: ArrayList<PartBean>?) {
-                t?.add(0, PartBean(0, "我不知道部门", false))
-                partBean = t
+        val disposable = RxUtils.handleDataHttp(eventShowPart, object : IRequestCallback<PartList> {
+            override fun onSuccess(t: PartList?) {
+                t?.data?.add(0, PartBean(0, "我不知道部门", false))
+                partBean = t?.data
             }
 
             override fun onFailure(code: Int, error: String?) {

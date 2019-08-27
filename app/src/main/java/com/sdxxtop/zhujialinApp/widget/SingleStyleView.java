@@ -17,6 +17,7 @@ public class SingleStyleView {
     private Activity mActivity;
     private OnItemSelectLintener mLintener;
     private OptionsPickerView pvOptions;
+    private int mType = 0;
 
     public SingleStyleView(Activity activity, List<String> list) {
         mActivity = activity;
@@ -25,13 +26,14 @@ public class SingleStyleView {
         initOptionPicker();
     }
 
-    public SingleStyleView(Activity activity) {
+    public SingleStyleView(Activity activity, int type) {
         this(activity, null);
+        this.mType = type;
     }
 
     public void show() {
         if (mList == null || mList.size() == 0) {
-            UIUtils.showToast("暂无部门");
+            UIUtils.showToast(mType == 0 ? "暂无类别" : "暂无部门");
             return;
         }
         if (pvOptions != null) {

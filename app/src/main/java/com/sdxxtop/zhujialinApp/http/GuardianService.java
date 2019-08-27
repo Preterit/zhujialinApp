@@ -3,14 +3,14 @@ package com.sdxxtop.zhujialinApp.http;
 import com.sdxxtop.model.bean.InitBean;
 import com.sdxxtop.model.bean.RequestBean;
 import com.sdxxtop.zhujialinApp.data.AutoLoginBean;
-import com.sdxxtop.zhujialinApp.data.CarTypeBean;
+import com.sdxxtop.zhujialinApp.data.CarTypeList;
 import com.sdxxtop.zhujialinApp.data.ContactIndexBean;
 import com.sdxxtop.zhujialinApp.data.EventSearchTitleBean;
 import com.sdxxtop.zhujialinApp.data.ExamineFinishBean;
 import com.sdxxtop.zhujialinApp.data.LearnNewsBean;
 import com.sdxxtop.zhujialinApp.data.LoginBean;
 import com.sdxxtop.zhujialinApp.data.MainMapBean;
-import com.sdxxtop.zhujialinApp.data.PartBean;
+import com.sdxxtop.zhujialinApp.data.PartList;
 import com.sdxxtop.zhujialinApp.data.PoliticsListBean;
 import com.sdxxtop.zhujialinApp.data.PushDataBean;
 import com.sdxxtop.zhujialinApp.data.RegisterBean;
@@ -30,7 +30,6 @@ import com.sdxxtop.zhujialinApp.ui.notice.data.NoticeData;
 import com.sdxxtop.zhujialinApp.ui.policy.data.PolicyBean;
 import com.sdxxtop.zhujialinApp.ui.policy.data.PolicyQueryBean;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -128,7 +127,7 @@ public interface GuardianService {
     //
     @FormUrlEncoded
     @POST("event/showPart")
-    Observable<RequestBean<ArrayList<PartBean>>> postEventShowPart2(@Field("data") String data);
+    Observable<RequestBean<PartList>> postEventShowPart2(@Field("data") String data);
 
     //
     @FormUrlEncoded
@@ -217,7 +216,7 @@ public interface GuardianService {
 
     @FormUrlEncoded
     @POST("event/showPart")
-    Observable<RequestBean<ArrayList<PartBean>>> postEventShowPart(@Field("data") String data);
+    Observable<RequestBean<PartList>> postEventShowPart(@Field("data") String data);
 
     @Multipart
     @POST("my_politics/politicsConfirm")
@@ -253,6 +252,6 @@ public interface GuardianService {
 
     @FormUrlEncoded
     @POST("car_event/showType")
-    Observable<RequestBean<ArrayList<CarTypeBean>>> postCarType(@Field("data") String data);
+    Observable<RequestBean<CarTypeList>> postCarType(@Field("data") String data);
 
 }

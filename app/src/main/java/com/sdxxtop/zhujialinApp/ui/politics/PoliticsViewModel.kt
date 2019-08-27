@@ -1,9 +1,6 @@
 package com.sdxxtop.zhujialinApp.ui.politics
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.luck.picture.lib.entity.LocalMedia
-import com.sdxxtop.model.bean.RequestBean
 import com.sdxxtop.model.http.callback.IRequestCallback
 import com.sdxxtop.model.http.net.ImageParams
 import com.sdxxtop.model.http.net.Params
@@ -11,8 +8,8 @@ import com.sdxxtop.model.http.util.RxUtils
 import com.sdxxtop.utils.UIUtils
 import com.sdxxtop.zhujialinApp.base.BaseViewModel
 import com.sdxxtop.zhujialinApp.data.PartBean
+import com.sdxxtop.zhujialinApp.data.PartList
 import com.sdxxtop.zhujialinApp.data.PushDataBean
-import com.sdxxtop.zhujialinApp.extens.set
 import com.sdxxtop.zhujialinApp.http.net.RetrofitHelper
 import java.io.File
 
@@ -35,10 +32,10 @@ class PoliticsViewModel : BaseViewModel() {
     fun load() {
         val params = Params()
         val eventShowPart = RetrofitHelper.getGuardianService().postEventShowPart(params.data)
-        val disposable = RxUtils.handleDataHttp(eventShowPart, object : IRequestCallback<ArrayList<PartBean>> {
-            override fun onSuccess(t: ArrayList<PartBean>?) {
-                t?.add(0, PartBean(0, "我不知道部门", false))
-                partBean = t
+        val disposable = RxUtils.handleDataHttp(eventShowPart, object : IRequestCallback<PartList> {
+            override fun onSuccess(t: PartList?) {
+                t?.data?.add(0, PartBean(0, "我不知道部门", false))
+                partBean = t?.data
             }
 
             override fun onFailure(code: Int, error: String?) {
