@@ -161,9 +161,9 @@ public class HomeRecyclerAdapter extends BaseQuickAdapter<MainIndexBean.EventBea
 
             if (type == MainIndexBean.EventBean.TYPE_ADD) {// 事件上报
                 appendValue = getAddValue(eventDataList.get(0).status);
-            } else if (type == MainIndexBean.EventBean.TYPE_PENDING){ // 代办
+            } else if (type == MainIndexBean.EventBean.TYPE_PENDING) { // 代办
                 appendValue = getAppendValue(eventDataList.get(0).status);
-            }else if (type == MainIndexBean.EventBean.TYPE_CAR_REPORT){// 车辆上报
+            } else if (type == MainIndexBean.EventBean.TYPE_CAR_REPORT) {// 车辆上报
                 appendValue = getAddCarValue(eventDataList.get(0).status);
             }
 
@@ -183,10 +183,10 @@ public class HomeRecyclerAdapter extends BaseQuickAdapter<MainIndexBean.EventBea
             if (type == MainIndexBean.EventBean.TYPE_ADD) {
                 appendValue = getAddValue(eventDataList.get(0).status);
                 appendValue2 = getAddValue(eventDataList.get(1).status);
-            } else if (type == MainIndexBean.EventBean.TYPE_PENDING){
+            } else if (type == MainIndexBean.EventBean.TYPE_PENDING) {
                 appendValue = getAppendValue(eventDataList.get(0).status);
                 appendValue2 = getAppendValue(eventDataList.get(1).status);
-            }else if (type == MainIndexBean.EventBean.TYPE_CAR_REPORT){// 车辆上报
+            } else if (type == MainIndexBean.EventBean.TYPE_CAR_REPORT) {// 车辆上报
                 appendValue = getAddCarValue(eventDataList.get(0).status);
                 appendValue2 = getAddCarValue(eventDataList.get(1).status);
             }
@@ -236,37 +236,33 @@ public class HomeRecyclerAdapter extends BaseQuickAdapter<MainIndexBean.EventBea
         String value = "";
         switch (status) {
             case 1:
-                value = "新提交：";
+                value = "已提交：";
                 break;
             case 2:
-                value = "新派发：";
+                value = "已派发：";
                 break;
             case 3:
-                value = "新反馈：";
+                value = "已反馈：";
                 break;
             //受理事变
             default:
-                value = "新完成：";
+                value = "已完成：";
                 break;
         }
         return value;
     }
 
-    //事件状态:1=已提交,2=待派发,3=已派发,4=已完成
+    //事件状态: 1:"待派发"  2: "待解决"  3 "已完成"
     private String getAddCarValue(int status) {
         String value = "";
         switch (status) {
             case 1:
-                value = "已提交：";
-                break;
-            case 2:
                 value = "待派发：";
                 break;
-            case 3:
-                value = "已派发：";
+            case 2:
+                value = "待解决：";
                 break;
-            //受理事变
-            default:
+            case 3:
                 value = "已完成：";
                 break;
         }
