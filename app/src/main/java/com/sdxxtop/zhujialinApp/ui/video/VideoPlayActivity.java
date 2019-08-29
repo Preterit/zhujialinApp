@@ -59,7 +59,8 @@ public class VideoPlayActivity extends BaseActivity {
 
         String video_path = getIntent().getStringExtra("video_path");
         String title = getIntent().getStringExtra("title");
-
+//        video_path = "https://sslproxy.yy.com:4443/livesystem/15013_xv_54880976_54880976_0_0_0-15013_xa_54880976_54880976_0_0_0.m3u8?org=yyweb&t=1567046764&tk=dfed843ea2f6bd1d15055f747da755f6&uuid=c52f9ac427874ca0843d0bb8d83dded4&wh=";
+        video_path = "rtsp://admin:xx123456@192.168.1.155:554/h264/ch33/main/av_stream";
         tv_title.setText(title);
         initDanMuView();
 

@@ -121,9 +121,9 @@ public class EventReportDetailSecondActivity extends GBaseMvpActivity<ERDSecondP
 
         String editValue = etNumContent.getEditValue();
         if (TextUtils.isEmpty(editValue)) {
-//            showToast("请填写编辑内容");
-//            return;
             editValue = "";
+            showToast("请填写编辑内容");
+            return;
         }
 
         List<File> imagePushPath = mShpvView.getImagePushPath();
