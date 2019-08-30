@@ -159,7 +159,7 @@ class CarReportActivity : KBaseActivity<ActivityCarReportBinding>() {
         val imgList = mBinding.cvisvView.getImageOrVideoPushPath(1)
         val videoList = mBinding.cvisvView.getImageOrVideoPushPath(2)
         if (imgList.size == 0 && videoList.size == 0) {
-            toast("请选择照片或者视频")
+            toast("请选择照片")
             return
         }
         val carNum = mBinding.taevCarNum.editText.text.toString().trim()
