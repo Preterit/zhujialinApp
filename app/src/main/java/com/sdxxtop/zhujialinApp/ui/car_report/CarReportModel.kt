@@ -61,6 +61,7 @@ class CarReportModel : BaseViewModel() {
             }
 
             override fun onFailure(code: Int, error: String) {
+                addReprtSuccess.set(false)
                 UIUtils.showToast(error)
             }
         })

@@ -99,9 +99,11 @@ class CarReportActivity : KBaseActivity<ActivityCarReportBinding>() {
         })
         mBinding.vm?.addReprtSuccess?.observe(this, Observer {
             hideLoadingDialog()
-            toast("上报成功")
-            finish()
-            startActivity<MyCarReportActivity>()
+            if (it){
+                toast("上报成功")
+                finish()
+                startActivity<MyCarReportActivity>()
+            }
         })
     }
 
